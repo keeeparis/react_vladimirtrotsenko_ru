@@ -7,11 +7,11 @@ export default function Navbar() {
         <>
             <div className={styles.navbar}>
                 <h1>Vladimir Trotsenko</h1>
-                <nav className={styles.list}>
+                <div className={styles.list}>
                     <Link to='/'>Home</Link> | {' '}
                     <Link to='weather'>Weather</Link> | {' '}
                     <Link to='todo'>Todo</Link>
-                </nav>
+                </div>
             </div>
             <Outlet />
         </>

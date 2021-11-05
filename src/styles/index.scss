@@ -1,3 +1,4 @@
+@import '~materialize-css/sass/materialize.scss';
 @import 'config';
 
 body {
@@ -13,14 +14,18 @@ body {
     flex-direction: column;
     position: relative;
     width: 50%;
+    padding-bottom: 30px;
+}
 
-    button {
-        align-self: flex-end;
-    }
+.loader-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .suggestions-list {
     border: 1px solid black;
+    background-color: #fff;
     position: absolute;
     top: 75px;
     left: 0;
@@ -31,4 +36,80 @@ body {
     cursor: pointer;
     padding: 5px;
     border-bottom: 1px solid black;
+}
+
+.city-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-item {
+    background-color: rgb(27, 166, 190);
+    position: relative;
+    border: 1px solid black;
+    margin: 0 20px 20px 0;
+    width: 350px;
+    height: 400px;
+    padding: 0 20px 30px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-name {
+    display: flex;
+    align-items: baseline;
+}
+
+.card-temp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+
+    .info {
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            white-space: nowrap;
+        }
+    }
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    flex-grow: 1;
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+.card-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+}
+
+.big-icon {
+    width: 125px;
+    height: 125px;
+}
+
+.small-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.close-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }

@@ -1,7 +1,8 @@
 import React from 'react'
+import Loader from '../loader/Loader'
 import Suggestions from './Suggestions'    
 
-export default function Form({submitForm, city, setCity, suggestions}) {
+export default function Form({submitForm, city, setCity, suggestions, isLoading}) {
     return (
         <form
             onSubmit={submitForm}
@@ -15,7 +16,10 @@ export default function Form({submitForm, city, setCity, suggestions}) {
                 onChange={e => setCity(e.target.value)}
                 autoComplete='off'
             />
-            <button>Поиск</button>
+            <div className='loader-button'>
+                {isLoading ? <Loader /> : null}
+                <button className='btn'>Поиск</button>
+            </div>
             <Suggestions suggestions={suggestions} setCity={setCity}/>
         </form>
     )

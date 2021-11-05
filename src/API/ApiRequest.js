@@ -5,13 +5,11 @@ export default class ApiRequest {
         const response = await axios.get('http://api.weatherapi.com/v1/current.json', {
             params: {
                 key: '827269b104da4cca8e7161054212110',
-                // eslint-disable-next-line
-                q: `${coords[0], coords[1]}`,
+                q: `${coords.lat}, ${coords.lng}`,
                 lang: 'ru'
             }
         })
-        const result = await response.json()
-        return result
+        return response.data
     }
 
     static async getCoords(city) {
@@ -21,10 +19,9 @@ export default class ApiRequest {
                 q: city
             }
         })
-        const result = await response.json()
-        return result
+        return response.data.results[0].geometry
     }
-    //TODO: проблема в функции ниже.
+
     static async getSuggestions(city) {
         const response = await axios.get('https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json', {
             params: {
@@ -32,10 +29,9 @@ export default class ApiRequest {
                 query: city,
                 maxresults: 10,
                 resultType: 'city',
-                language: 'ru'
+                // language: 'ru'
             }
         })
-        const result = await response.json()
-        return result
+        return response.data
     }
 }

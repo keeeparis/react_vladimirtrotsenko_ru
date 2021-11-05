@@ -1,9 +1,13 @@
+.wrapper {
+    padding-right: 10px;
+}
+
 .loader {
-    width: 100px;
-    height: 100px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
-    border: 3px dashed teal;
-    animation: rotate 5s infinite linear;
+    border: 2px dashed teal;
+    animation: rotate 2s infinite linear;
 }
 
 @keyframes rotate {
