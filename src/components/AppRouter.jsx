@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Navbar from './navbar/Navbar'
+import Navbar from './UI/navbar/Navbar'
 import Weather from '../pages/Weather'
 import Todo from '../pages/Todo'
 import Index from '../pages/Index'
 import { AuthContext } from '../context'
-import Loader from './loader/Loader'
+import Loader from './UI/loader/Loader'
 
 export default function AppRouter() {
     const {isLoaded} = useContext(AuthContext)

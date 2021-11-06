@@ -7,8 +7,8 @@ import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
 
 export default function Weather() {
-    const [city, setCity] = useState('')
     const {cards, setCards} = useContext(AuthContext)
+    const [city, setCity] = useState('')
     const [suggestions, setSuggestions] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -46,18 +46,20 @@ export default function Weather() {
     }, [error, setError, message])
 
     useEffect(() => {
+        let isMounted = true
         const fetchSuggestions = async () => {
             try {
                 const result = await ApiRequest.getSuggestions(city)
-                setSuggestions(result.suggestions)
+                if (isMounted) setSuggestions(result.suggestions)
             } catch (e) {
                 setError(e.message)
             }
         }
         fetchSuggestions()
+        return () => { isMounted = false }
     }, [city])
 
-    useLocalStorage(cards)
+    useLocalStorage('vtru_cards', cards)
 
     return (
         <div className='content'>

@@ -7,18 +7,22 @@ import { useEffect, useState } from "react";
 
 function App() {
     const [cards, setCards] = useState([])
+    const [posts, setPosts] = useState([])
     const [isLoaded, setIsLoaded] = useState(true)
 
     useEffect(() => {
         if (localStorage.getItem('vtru_cards')) {
             setCards(JSON.parse(localStorage.getItem('vtru_cards')))
         }
+        if (localStorage.getItem('vtru_posts')) {
+            setPosts(JSON.parse(localStorage.getItem('vtru_posts')))
+        }
         setIsLoaded(false)
     }, [])
 
     return (
         <AuthContext.Provider
-            value={{cards, setCards, isLoaded}}
+            value={{cards, setCards, posts, setPosts, isLoaded}}
         >
             <BrowserRouter>
                 <AppRouter />
@@ -28,5 +32,3 @@ function App() {
 }
 
 export default App;
-
-// TODO: добавить разницу часовых поясов

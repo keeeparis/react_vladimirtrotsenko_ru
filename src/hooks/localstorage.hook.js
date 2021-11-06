@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 
-export const useLocalStorage = (cards) => {
+export const useLocalStorage = (name, cards) => {
     useMemo(() => {
-        localStorage.setItem('vtru_cards', JSON.stringify(cards))
-    }, [cards])
+        localStorage.setItem(name, JSON.stringify(cards))
+    }, [name, cards])
 }

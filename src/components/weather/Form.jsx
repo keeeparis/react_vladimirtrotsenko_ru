@@ -1,5 +1,5 @@
 import React from 'react'
-import Loader from '../loader/Loader'
+import Loader from '../UI/loader/Loader'
 import Suggestions from './Suggestions'    
 
 export default function Form({submitForm, city, setCity, suggestions, isLoading}) {

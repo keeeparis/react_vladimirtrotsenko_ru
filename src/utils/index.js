@@ -8,6 +8,8 @@ export const formatTime = (time) => {
     })
 }
 
-export const timeDifference = (time) => {
-    return Math.floor((Date.now() - Date.parse(time))/36e5)
+export const timeDifference = (time, lastUpdated) => {
+    let result = Math.round((Date.parse(time) - +`${lastUpdated}000`)/36e5)
+    result = (result > -1) ? `+${result}` : result
+    return result
 }

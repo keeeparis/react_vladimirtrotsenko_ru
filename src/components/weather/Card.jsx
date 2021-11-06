@@ -3,7 +3,7 @@ import windIcon from '../../media/images/wind-solid.svg'
 import humidIcon from '../../media/images/drop-line.svg'
 import closeIcon from '../../media/images/close-line.svg'
 import refreshIcon from '../../media/images/refresh.svg'
-import { formatTime } from '../../utils'
+import { formatTime, timeDifference } from '../../utils'
 import ApiRequest from '../../API/ApiRequest'
 import { AuthContext } from '../../context'
 
@@ -14,6 +14,7 @@ export default function Card({city, location, current, remove}) {
         remove(city)
     }
 
+    // By default, using current API, it restricts to update more than one time in 180sec.
     const refreshData = async () => {
         const response = await ApiRequest.getData({lat: location.lat, lng: location.lon})
         setCards(cards.map(card => card.city === city ? {...card, location: response.location, current: response.current} : card))
@@ -22,9 +23,11 @@ export default function Card({city, location, current, remove}) {
     return (
         <div className='card-item'>
             <div className='card-name'>
-                <h4>{city}</h4>
+                {city.split(', ').map((el, index) => 
+                    (index === 0 ) ? <h4 key={el}>{el},</h4> : <h5 key={el}>{el}</h5>
+                )}
+                <p>{formatTime(location.localtime)}, {timeDifference(location.localtime, current.last_updated_epoch)} ч.</p>
             </div>
-            <p>{formatTime(location.localtime)}</p>
             <div className='card-temp'>
                 <div className='info'>
                     <h2>
