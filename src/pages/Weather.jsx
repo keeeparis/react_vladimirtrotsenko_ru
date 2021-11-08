@@ -7,9 +7,9 @@ import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
 
 export default function Weather() {
-    const {cards, setCards} = useContext(AuthContext)
+    const {cards, setCards, lang} = useContext(AuthContext)
     const [city, setCity] = useState('')
-    const [suggestions, setSuggestions] = useState([])
+    const [labelForSelect, setLabelForSelect] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const message = useMessage()
@@ -19,20 +19,21 @@ export default function Weather() {
         try {
             setIsLoading(true)
 
-            if (!city.length) { throw new Error('Вы не ввели город...') }
+            if (!city.length) { throw new Error(lang==='ru' ? 'Вы не ввели город...' : 'You haven\'t selected the city...') }
 
             const coords = await ApiRequest.getCoords(city)
             const data = await ApiRequest.getData(coords)
 
             const isInCards = cards.filter(e => e.location.lat === data.location.lat && e.location.lon === data.location.lon)
-            if (!!isInCards.length) { throw new Error('Город уже в списке') }
+            if (!!isInCards.length) { throw new Error(lang==='ru' ? 'Город уже в списке' : 'City is already on the screen') }
 
-            setCards([...cards, {city: city, location: data.location, current: data.current}])
+            setCards([...cards, {city: city, location: data.location, current: data.current, lastUpdated: Date.now()}])
         } catch (e) {
             setError(e.message)
         } finally {
             setIsLoading(false)
             setCity('')
+            setLabelForSelect('')
         }
     }
 
@@ -45,26 +46,12 @@ export default function Weather() {
         setError(null)
     }, [error, setError, message])
 
-    useEffect(() => {
-        let isMounted = true
-        const fetchSuggestions = async () => {
-            try {
-                const result = await ApiRequest.getSuggestions(city)
-                if (isMounted) setSuggestions(result.suggestions)
-            } catch (e) {
-                setError(e.message)
-            }
-        }
-        fetchSuggestions()
-        return () => { isMounted = false }
-    }, [city])
-
     useLocalStorage('vtru_cards', cards)
 
     return (
         <div className='content'>
             <h2>Weather JSX</h2>
-            <Form submitForm={submitForm} city={city} setCity={setCity} suggestions={suggestions} isLoading={isLoading}/>
+            <Form submitForm={submitForm} setCity={setCity} label={labelForSelect} setLabel={setLabelForSelect} isLoading={isLoading}/>
             <List cards={cards} remove={remove} />
         </div>
     )

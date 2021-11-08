@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {useMessage} from '../../hooks/message.hook'
+import Button from '../UI/button/Button'
 
 export default function Form({create}) {
     const [post, setPost] = useState({title: '', body: '', id: ''})
@@ -28,14 +29,15 @@ export default function Form({create}) {
                 name='title'
                 onChange={handleChange}
             />
-            <input 
-                type="text" 
-                value={post.body}
-                placeholder='Введите содержимое...'
-                name='body'
+            <textarea 
+                name="body" 
+                value={post.body} 
+                placeholder='Введите содержимое...' 
+                cols="20" rows="10" 
+                className='materialize-textarea'
                 onChange={handleChange}
             />
-            <button onClick={addNewPost}>Создать</button>
+            <Button onClick={addNewPost}>Создать</Button>
         </form>
     )
 }

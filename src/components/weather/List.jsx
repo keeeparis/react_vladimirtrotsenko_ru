@@ -9,6 +9,7 @@ export default function List({cards, remove}) {
                     city={card.city}
                     location={card.location}
                     current={card.current}
+                    lastUpdated={card.lastUpdated}
                     remove={remove}
                     key={card.city}
                 />

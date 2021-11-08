@@ -3,12 +3,13 @@ import windIcon from '../../media/images/wind-solid.svg'
 import humidIcon from '../../media/images/drop-line.svg'
 import closeIcon from '../../media/images/close-line.svg'
 import refreshIcon from '../../media/images/refresh.svg'
+import Button from '../UI/button/Button'
 import { formatTime, timeDifference } from '../../utils'
 import ApiRequest from '../../API/ApiRequest'
 import { AuthContext } from '../../context'
 
-export default function Card({city, location, current, remove}) {
-    const {cards, setCards} = useContext(AuthContext)
+export default function Card({city, location, current, lastUpdated, remove}) {
+    const {cards, setCards, lang} = useContext(AuthContext)
 
     const removeCard = () => {
         remove(city)
@@ -17,49 +18,55 @@ export default function Card({city, location, current, remove}) {
     // By default, using current API, it restricts to update more than one time in 180sec.
     const refreshData = async () => {
         const response = await ApiRequest.getData({lat: location.lat, lng: location.lon})
-        setCards(cards.map(card => card.city === city ? {...card, location: response.location, current: response.current} : card))
+        setCards(cards.map(card => card.city === city ? {...card, location: response.location, current: response.current, lastUpdated: Date.now()} : card))
     }
 
     return (
-        <div className='card-item'>
-            <div className='card-name'>
-                {city.split(', ').map((el, index) => 
-                    (index === 0 ) ? <h4 key={el}>{el},</h4> : <h5 key={el}>{el}</h5>
-                )}
-                <p>{formatTime(location.localtime)}, {timeDifference(location.localtime, current.last_updated_epoch)} ч.</p>
-            </div>
-            <div className='card-temp'>
-                <div className='info'>
-                    <h2>
-                        {current.temp_c}&#8451;
-                    </h2>
-                    <p>
-                        Ощущается как: {current.feelslike_c}&#8451;
-                    </p>
+        <div className='card card-item blue-grey darken-1'>
+            <div className='card-content'>
+                <div className='card-name white-text'>
+                    {city.split(', ').map((el, index) => 
+                        (index === 0 ) ? <h4 key={el}>{el},</h4> : <h5 key={el}>{el}</h5>
+                    )}
+                    <p className='black-text'>{lang==='ru'?<>Местное время: </>:<>Local time: </>}{formatTime(location.localtime, lang)}, {timeDifference(location.localtime, lastUpdated)}{lang==='ru'?<>ч.</>:<>h</>}</p>
                 </div>
-                <img src={current.condition.icon} alt="weather icon" className='big-icon'/>
+                <div className='card-temp'>
+                    <div className='info'>
+                        <h2>
+                            {Math.round(current.temp_c)}&#8451;
+                        </h2>
+                        <p>{lang==='ru'?<>Ощущается как: </> : <>Feels like: </>}{Math.round(current.feelslike_c)}&#8451;</p>
+                    </div>
+                    <img src={current.condition.icon} alt="weather icon" className='big-icon'/>
+                </div>
             </div>
-            <div className='card-details'>
+            <div className='card-details card-action'>
                 <div className='info'>
                     <img src={humidIcon} alt="humidity" className='small-icon'/>
                     <p>{current.humidity} %</p>
                 </div>
                 <div className='info'>
                     <img src={windIcon} alt="wind" className='small-icon'/>
-                    <p>{current.wind_kph} км/ч</p>
+                    <p>{Math.round(current.wind_kph)} {lang==='ru'? <>км/ч</> : <>kph</>}</p>
                 </div>
             </div>
             <div className='card-close'>
-                <button
+                <Button
                     onClick={refreshData}
+                    btn={false}
+                    color={['btn-flat', 'waves-green']}
+                    style={{padding: 5}}
                 >
                     <img src={refreshIcon} alt="refresh" className='close-icon' />
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={removeCard}
+                    btn={false}
+                    color={['btn-flat', 'waves-red']}
+                    style={{padding: 5}}
                 >
                     <img src={closeIcon} alt="close" className='close-icon'/>
-                </button>
+                </Button>
             </div>
         </div>
     )

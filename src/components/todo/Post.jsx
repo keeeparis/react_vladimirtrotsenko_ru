@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from '../UI/modal/Modal'
+import Button from '../UI/button/Button'
 import ChangePostForm from './ChangePostForm'
 
 export default function Post({post, num, remove}) {
@@ -12,8 +13,8 @@ export default function Post({post, num, remove}) {
                 <p>{post.body}</p>
             </div>
             <div className='buttons'>
-                <button onClick={() => setModal(true)}>Редактировать</button>
-                <button onClick={() => remove(post)}>Удалить</button>
+                <Button onClick={() => setModal(true)}>Редактировать</Button>
+                <Button onClick={() => remove(post)}>Удалить</Button>
             </div>
             <Modal visible={modal} setVisible={setModal}>
                 <ChangePostForm post={post} setVisible={setModal}/>

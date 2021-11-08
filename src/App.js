@@ -9,6 +9,7 @@ function App() {
     const [cards, setCards] = useState([])
     const [posts, setPosts] = useState([])
     const [isLoaded, setIsLoaded] = useState(true)
+    const [lang, setLang] = useState('')
 
     useEffect(() => {
         if (localStorage.getItem('vtru_cards')) {
@@ -22,7 +23,7 @@ function App() {
 
     return (
         <AuthContext.Provider
-            value={{cards, setCards, posts, setPosts, isLoaded}}
+            value={{cards, setCards, posts, setPosts, isLoaded, lang, setLang}}
         >
             <BrowserRouter>
                 <AppRouter />

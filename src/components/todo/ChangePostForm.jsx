@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import {AuthContext} from '../../context/index'
+import Button from '../UI/button/Button'
 
 export default function ChangePostForm({post, setVisible}) {
     const {posts, setPosts} = useContext(AuthContext)
@@ -23,13 +24,14 @@ export default function ChangePostForm({post, setVisible}) {
                 onChange={handleChange}
                 name='title'
             />
-            <input 
-                type="text" 
+            <textarea 
+                name="body" 
                 value={current.body}
+                cols="20" rows="10" 
+                className='materialize-textarea'
                 onChange={handleChange}
-                name='body'
             />
-            <button onClick={updatePost}>Редактировать</button>
+            <Button onClick={updatePost}>Редактировать</Button>
         </form>
     )
 }

@@ -3,6 +3,7 @@ import Filter from '../components/todo/Filter'
 import Form from '../components/todo/Form'
 import List from '../components/todo/List'
 import Modal from '../components/UI/modal/Modal'
+import Button from '../components/UI/button/Button'
 import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
 import { usePosts } from '../hooks/sortingPosts.hook'
@@ -26,7 +27,7 @@ export default function Todo() {
 
     return (
         <div className='content'>
-            <button onClick={() => setModal(true)}>Создать пост</button>
+            <Button onClick={() => setModal(true)} style={{width: 'fit-content'}} color={['green', 'accent-3']}>Создать пост</Button>
             <Modal visible={modal} setVisible={setModal}>
                 <Form create={createPost} />
             </Modal>

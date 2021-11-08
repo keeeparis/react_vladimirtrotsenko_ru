@@ -1,26 +1,40 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Loader from '../UI/loader/Loader'
-import Suggestions from './Suggestions'    
+import Button from '../UI/button/Button'
+import AsyncSelect from 'react-select/async'
+import ApiRequest from '../../API/ApiRequest'    
+import { suggestionsDefaultOptionsEN, suggestionsDefaultOptionsRU } from '../../utils'
+import {AuthContext} from '../../context/index'
 
-export default function Form({submitForm, city, setCity, suggestions, isLoading}) {
+export default function Form({submitForm, setCity, label, setLabel, isLoading}) {
+    const {lang} = useContext(AuthContext)
+    const loadSuggestions = async (inputValue, callback) => {
+        if (!inputValue) return
+        const result = await ApiRequest.getSuggestions(inputValue)
+        callback(result.suggestions.map(option => ({
+            label: `${option.address?.city}, ${option.address?.country}`, 
+            value: `${option.address?.city}, ${option.address?.country}`
+        })))
+    }
+
     return (
         <form
             onSubmit={submitForm}
             className='form-weather'
         >
-            <label htmlFor="city">Поиск города</label>
-            <input 
-                type="text" 
-                value={city}
-                placeholder='Введите название города...'
-                onChange={e => setCity(e.target.value)}
-                autoComplete='off'
+            <AsyncSelect 
+                value={label}
+                defaultOptions={lang==='ru' ? suggestionsDefaultOptionsRU : suggestionsDefaultOptionsEN}
+                onChange={e => {setLabel(e); setCity(e.value)}}
+                loadOptions={loadSuggestions}
+                className='select-suggestions'
+                placeholder={lang==='ru'?'Введите город...':'Search city...'}
             />
             <div className='loader-button'>
-                {isLoading ? <Loader /> : null}
-                <button className='btn'>Поиск</button>
+                {isLoading 
+                ? <Button>{lang==='ru'?<><Loader /></>:<><Loader /></>}</Button> 
+                : <Button>{lang==='ru'?<>Поиск</>:<>Search</>}</Button>}
             </div>
-            <Suggestions suggestions={suggestions} setCity={setCity}/>
         </form>
     )
 }

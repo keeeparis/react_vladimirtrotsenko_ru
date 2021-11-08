@@ -1,12 +1,16 @@
+$pulse-color: rgb(247, 243, 47);
+/* .loader - old animation
+   .elastic, .flashing, .bricks - new ones */
+
 .wrapper {
-    padding-right: 10px;
+    padding: 0 20px;
 }
 
 .loader {
-    width: 25px;
-    height: 25px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    border: 2px dashed teal;
+    border: 2px dashed rgb(207, 204, 14);
     animation: rotate 2s infinite linear;
 }
 
@@ -16,5 +20,240 @@
     }
     to {
         transform: rotate(350deg) scale(1.5);
+    }
+}
+
+.elastic {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $pulse-color;
+    color: $pulse-color;
+    animation: dotElastic 1s infinite linear;
+  }
+  
+.elastic::before, .elastic::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+}
+  
+.elastic::before {
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $pulse-color;
+    color: $pulse-color;
+    animation: dotElasticBefore 1s infinite linear;
+}
+  
+.elastic::after {
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $pulse-color;
+    color: $pulse-color;
+    animation: dotElasticAfter 1s infinite linear;
+}
+  
+@keyframes dotElasticBefore {
+    0% {
+      transform: scale(1, 1);
+    }
+    25% {
+      transform: scale(1, 1.5);
+    }
+    50% {
+      transform: scale(1, 0.67);
+    }
+    75% {
+      transform: scale(1, 1);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+}
+  
+@keyframes dotElastic {
+    0% {
+      transform: scale(1, 1);
+    }
+    25% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1, 1.5);
+    }
+    75% {
+      transform: scale(1, 1);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+}
+  
+@keyframes dotElasticAfter {
+    0% {
+      transform: scale(1, 1);
+    }
+    25% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1, 0.67);
+    }
+    75% {
+      transform: scale(1, 1.5);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+}
+
+.flashing {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $pulse-color;
+    color: $pulse-color;
+    animation: dotFlashing 1s infinite linear alternate;
+    animation-delay: .5s;
+}
+  
+.flashing::before, .flashing::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+}
+  
+.flashing::before {
+    left: -15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $pulse-color;
+    color: $pulse-color;
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 0s;
+}
+  
+.flashing::after {
+    left: 15px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $pulse-color;
+    color: $pulse-color;
+    animation: dotFlashing 1s infinite alternate;
+    animation-delay: 1s;
+}
+  
+@keyframes dotFlashing {
+    0% {
+      background-color: $pulse-color;
+    }
+    50%,
+    100% {
+      background-color: #ebe6ff;
+    }
+}
+
+.bricks {
+    position: relative;
+    top: 8px;
+    left: -9999px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: $pulse-color;
+    color: $pulse-color;
+    box-shadow: 9991px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color, 10007px 0 0 0 $pulse-color;
+    animation: dotBricks 2s infinite ease;
+}
+  
+@keyframes dotBricks {
+    0% {
+      box-shadow: 9991px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color, 10007px 0 0 0 $pulse-color;
+    }
+    8.333% {
+      box-shadow: 10007px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color, 10007px 0 0 0 $pulse-color;
+    }
+    16.667% {
+      box-shadow: 10007px -16px 0 0 $pulse-color, 9991px -16px 0 0 $pulse-color, 10007px 0 0 0 $pulse-color;
+    }
+    25% {
+      box-shadow: 10007px -16px 0 0 $pulse-color, 9991px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color;
+    }
+    33.333% {
+      box-shadow: 10007px 0 0 0 $pulse-color, 9991px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color;
+    }
+    41.667% {
+      box-shadow: 10007px 0 0 0 $pulse-color, 10007px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color;
+    }
+    50% {
+      box-shadow: 10007px 0 0 0 $pulse-color, 10007px -16px 0 0 $pulse-color, 9991px -16px 0 0 $pulse-color;
+    }
+    58.333% {
+      box-shadow: 9991px 0 0 0 $pulse-color, 10007px -16px 0 0 $pulse-color, 9991px -16px 0 0 $pulse-color;
+    }
+    66.666% {
+      box-shadow: 9991px 0 0 0 $pulse-color, 10007px 0 0 0 $pulse-color, 9991px -16px 0 0 $pulse-color;
+    }
+    75% {
+      box-shadow: 9991px 0 0 0 $pulse-color, 10007px 0 0 0 $pulse-color, 10007px -16px 0 0 $pulse-color;
+    }
+    83.333% {
+      box-shadow: 9991px -16px 0 0 $pulse-color, 10007px 0 0 0 $pulse-color, 10007px -16px 0 0 $pulse-color;
+    }
+    91.667% {
+      box-shadow: 9991px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color, 10007px -16px 0 0 $pulse-color;
+    }
+    100% {
+      box-shadow: 9991px -16px 0 0 $pulse-color, 9991px 0 0 0 $pulse-color, 10007px 0 0 0 $pulse-color;
+    }
+}
+
+.spin {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: transparent;
+    box-shadow: 0 -18px 0 0 $pulse-color, 12.72984px -12.72984px 0 0 $pulse-color, 18px 0 0 0 $pulse-color, 12.72984px 12.72984px 0 0 rgba(152, 128, 255, 0), 0 18px 0 0 rgba(152, 128, 255, 0), -12.72984px 12.72984px 0 0 rgba(152, 128, 255, 0), -18px 0 0 0 rgba(152, 128, 255, 0), -12.72984px -12.72984px 0 0 rgba(152, 128, 255, 0);
+    animation: dotSpin 1.5s infinite linear;
+}
+  
+@keyframes dotSpin {
+    0%,
+    100% {
+      box-shadow: 0 -18px 0 0 $pulse-color, 12.72984px -12.72984px 0 0 $pulse-color, 18px 0 0 0 $pulse-color, 12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), 0 18px 0 -5px rgba(152, 128, 255, 0), -12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), -18px 0 0 -5px rgba(152, 128, 255, 0), -12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0);
+    }
+    12.5% {
+      box-shadow: 0 -18px 0 -5px rgba(152, 128, 255, 0), 12.72984px -12.72984px 0 0 $pulse-color, 18px 0 0 0 $pulse-color, 12.72984px 12.72984px 0 0 $pulse-color, 0 18px 0 -5px rgba(152, 128, 255, 0), -12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), -18px 0 0 -5px rgba(152, 128, 255, 0), -12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0);
+    }
+    25% {
+      box-shadow: 0 -18px 0 -5px rgba(152, 128, 255, 0), 12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0), 18px 0 0 0 $pulse-color, 12.72984px 12.72984px 0 0 $pulse-color, 0 18px 0 0 $pulse-color, -12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), -18px 0 0 -5px rgba(152, 128, 255, 0), -12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0);
+    }
+    37.5% {
+      box-shadow: 0 -18px 0 -5px rgba(152, 128, 255, 0), 12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0), 18px 0 0 -5px rgba(152, 128, 255, 0), 12.72984px 12.72984px 0 0 $pulse-color, 0 18px 0 0 $pulse-color, -12.72984px 12.72984px 0 0 $pulse-color, -18px 0 0 -5px rgba(152, 128, 255, 0), -12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0);
+    }
+    50% {
+      box-shadow: 0 -18px 0 -5px rgba(152, 128, 255, 0), 12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0), 18px 0 0 -5px rgba(152, 128, 255, 0), 12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), 0 18px 0 0 $pulse-color, -12.72984px 12.72984px 0 0 $pulse-color, -18px 0 0 0 $pulse-color, -12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0);
+    }
+    62.5% {
+      box-shadow: 0 -18px 0 -5px rgba(152, 128, 255, 0), 12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0), 18px 0 0 -5px rgba(152, 128, 255, 0), 12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), 0 18px 0 -5px rgba(152, 128, 255, 0), -12.72984px 12.72984px 0 0 $pulse-color, -18px 0 0 0 $pulse-color, -12.72984px -12.72984px 0 0 $pulse-color;
+    }
+    75% {
+      box-shadow: 0 -18px 0 0 $pulse-color, 12.72984px -12.72984px 0 -5px rgba(152, 128, 255, 0), 18px 0 0 -5px rgba(152, 128, 255, 0), 12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), 0 18px 0 -5px rgba(152, 128, 255, 0), -12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), -18px 0 0 0 $pulse-color, -12.72984px -12.72984px 0 0 $pulse-color;
+    }
+    87.5% {
+      box-shadow: 0 -18px 0 0 $pulse-color, 12.72984px -12.72984px 0 0 $pulse-color, 18px 0 0 -5px rgba(152, 128, 255, 0), 12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), 0 18px 0 -5px rgba(152, 128, 255, 0), -12.72984px 12.72984px 0 -5px rgba(152, 128, 255, 0), -18px 0 0 -5px rgba(152, 128, 255, 0), -12.72984px -12.72984px 0 0 $pulse-color;
     }
 }

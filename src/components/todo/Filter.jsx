@@ -1,5 +1,5 @@
 import React from 'react'
-import Select from '../UI/select/Select'
+import SelectCustom from '../UI/select/Select'
 
 export default function Filter({filter, setFilter}) {
     return (
@@ -12,7 +12,7 @@ export default function Filter({filter, setFilter}) {
                 />
             </div>
             <div className='input-field'>
-                <Select
+                <SelectCustom
                     filter={filter}
                     setFilter={setFilter}
                     defaultValue={'Сортировка'}
