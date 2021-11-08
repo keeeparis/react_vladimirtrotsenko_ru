@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react'
 import {AuthContext} from '../../context/index'
+import { useDictionary } from '../../utils/dictionary'
 import Button from '../UI/button/Button'
 
 export default function ChangePostForm({post, setVisible}) {
-    const {posts, setPosts} = useContext(AuthContext)
+    const {posts, setPosts, lang} = useContext(AuthContext)
     const [current, setCurrent] = useState({title: post.title, body: post.body, id: post.id})
+    const words = useDictionary(lang)
 
     const updatePost = (event) => {
         event.preventDefault()
@@ -31,7 +33,7 @@ export default function ChangePostForm({post, setVisible}) {
                 className='materialize-textarea'
                 onChange={handleChange}
             />
-            <Button onClick={updatePost}>Редактировать</Button>
+            <Button onClick={updatePost}>{words.changePost}</Button>
         </form>
     )
 }

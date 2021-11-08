@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {useMessage} from '../../hooks/message.hook'
 import Button from '../UI/button/Button'
+import {AuthContext} from '../../context/index'
+import { useDictionary } from '../../utils/dictionary'
 
 export default function Form({create}) {
     const [post, setPost] = useState({title: '', body: '', id: ''})
+    const {lang} = useContext(AuthContext)
+    const words = useDictionary(lang)
     const message = useMessage()
 
     const addNewPost = (event) => {
         event.preventDefault()
         if (post.title === '' || post.body === '') {
-            message('Введите название и описание')
+            message(words.errorNoNameDesc)
             return
         }
         create({...post, id: Date.now()})
@@ -25,19 +29,19 @@ export default function Form({create}) {
             <input 
                 type="text" 
                 value={post.title}
-                placeholder='Введите заголовок...'
+                placeholder={words.enterName}
                 name='title'
                 onChange={handleChange}
             />
             <textarea 
                 name="body" 
                 value={post.body} 
-                placeholder='Введите содержимое...' 
+                placeholder={words.enterDescription}
                 cols="20" rows="10" 
                 className='materialize-textarea'
                 onChange={handleChange}
             />
-            <Button onClick={addNewPost}>Создать</Button>
+            <Button onClick={addNewPost}>{words.create}</Button>
         </form>
     )
 }

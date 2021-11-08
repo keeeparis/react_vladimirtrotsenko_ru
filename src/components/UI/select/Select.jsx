@@ -10,10 +10,7 @@ export default function SelectCustom({filter, setFilter, defaultValue, options})
 
     return (
         <Select 
-            options={[
-                {value: 'title', label: 'По названию'},
-                {value: 'body', label: 'По описанию'}
-            ]}
+            options={options}
             onChange={e => setFilter({...filter, sort: e.value})}
             placeholder={defaultValue}
         />

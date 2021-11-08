@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import windIcon from '../../media/images/wind-solid.svg'
 import humidIcon from '../../media/images/drop-line.svg'
 import closeIcon from '../../media/images/close-line.svg'
@@ -7,9 +7,15 @@ import Button from '../UI/button/Button'
 import { formatTime, timeDifference } from '../../utils'
 import ApiRequest from '../../API/ApiRequest'
 import { AuthContext } from '../../context'
+import { useDictionary } from '../../utils/dictionary'
 
 export default function Card({city, location, current, lastUpdated, remove}) {
     const {cards, setCards, lang} = useContext(AuthContext)
+    const words = useDictionary(lang)
+
+    const isDayOrNightClasses = useMemo(() => {
+        return current.is_day ? 'blue-grey lighten-1' : 'blue-grey darken-2 white-text'
+    }, [current.is_day])
 
     const removeCard = () => {
         remove(city)
@@ -28,26 +34,26 @@ export default function Card({city, location, current, lastUpdated, remove}) {
                     {city.split(', ').map((el, index) => 
                         (index === 0 ) ? <h4 key={el}>{el},</h4> : <h5 key={el}>{el}</h5>
                     )}
-                    <p className='black-text'>{lang==='ru'?<>Местное время: </>:<>Local time: </>}{formatTime(location.localtime, lang)}, {timeDifference(location.localtime, lastUpdated)}{lang==='ru'?<>ч.</>:<>h</>}</p>
+                    <p className='black-text'>{words.localTime}{formatTime(location.localtime, lang)}, {timeDifference(location.localtime, lastUpdated)}{words.hour}</p>
                 </div>
                 <div className='card-temp'>
                     <div className='info'>
                         <h2>
                             {Math.round(current.temp_c)}&#8451;
                         </h2>
-                        <p>{lang==='ru'?<>Ощущается как: </> : <>Feels like: </>}{Math.round(current.feelslike_c)}&#8451;</p>
+                        <p>{words.feelsLike}{Math.round(current.feelslike_c)}&#8451;</p>
                     </div>
                     <img src={current.condition.icon} alt="weather icon" className='big-icon'/>
                 </div>
             </div>
-            <div className='card-details card-action'>
+            <div className={'card-details card-action '.concat(isDayOrNightClasses)}>
                 <div className='info'>
                     <img src={humidIcon} alt="humidity" className='small-icon'/>
                     <p>{current.humidity} %</p>
                 </div>
                 <div className='info'>
                     <img src={windIcon} alt="wind" className='small-icon'/>
-                    <p>{Math.round(current.wind_kph)} {lang==='ru'? <>км/ч</> : <>kph</>}</p>
+                    <p>{Math.round(current.wind_kph)} {words.kph}</p>
                 </div>
             </div>
             <div className='card-close'>

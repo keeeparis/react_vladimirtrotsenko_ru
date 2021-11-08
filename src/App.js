@@ -18,6 +18,9 @@ function App() {
         if (localStorage.getItem('vtru_posts')) {
             setPosts(JSON.parse(localStorage.getItem('vtru_posts')))
         }
+        if (localStorage.getItem('vtru_lang')) {
+            setLang(JSON.parse(localStorage.getItem('vtru_lang')))
+        }
         setIsLoaded(false)
     }, [])
 

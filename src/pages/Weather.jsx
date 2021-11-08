@@ -5,6 +5,7 @@ import List from '../components/weather/List'
 import { useMessage } from '../hooks/message.hook'
 import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
+import { useDictionary } from '../utils/dictionary'
 
 export default function Weather() {
     const {cards, setCards, lang} = useContext(AuthContext)
@@ -13,19 +14,20 @@ export default function Weather() {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const message = useMessage()
+    const words = useDictionary(lang)
 
     const submitForm = async (e) => {
         e.preventDefault()
         try {
             setIsLoading(true)
 
-            if (!city.length) { throw new Error(lang==='ru' ? 'Вы не ввели город...' : 'You haven\'t selected the city...') }
+            if (!city.length) { throw new Error(words.errorNoSelectCity) }
 
             const coords = await ApiRequest.getCoords(city)
             const data = await ApiRequest.getData(coords)
 
             const isInCards = cards.filter(e => e.location.lat === data.location.lat && e.location.lon === data.location.lon)
-            if (!!isInCards.length) { throw new Error(lang==='ru' ? 'Город уже в списке' : 'City is already on the screen') }
+            if (!!isInCards.length) { throw new Error(words.errorAlreadyInList) }
 
             setCards([...cards, {city: city, location: data.location, current: data.current, lastUpdated: Date.now()}])
         } catch (e) {

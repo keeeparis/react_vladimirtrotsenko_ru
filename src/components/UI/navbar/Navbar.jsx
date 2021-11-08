@@ -3,9 +3,13 @@ import { Link, Outlet } from 'react-router-dom'
 import styles from './Navbar.module.scss'
 import Button from '../button/Button'
 import { AuthContext } from '../../../context'
+import { useLocalStorage } from '../../../hooks/localstorage.hook'
 
 export default function Navbar() {
-    const {setLang} = useContext(AuthContext)
+    const {lang, setLang} = useContext(AuthContext)
+
+    useLocalStorage('vtru_lang', lang)
+    
     return (
         <>
             <div className={styles.navbar}>

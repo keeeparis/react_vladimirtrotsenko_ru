@@ -5,9 +5,12 @@ import AsyncSelect from 'react-select/async'
 import ApiRequest from '../../API/ApiRequest'    
 import { suggestionsDefaultOptionsEN, suggestionsDefaultOptionsRU } from '../../utils'
 import {AuthContext} from '../../context/index'
+import { useDictionary } from '../../utils/dictionary'
 
 export default function Form({submitForm, setCity, label, setLabel, isLoading}) {
     const {lang} = useContext(AuthContext)
+    const words = useDictionary(lang)
+
     const loadSuggestions = async (inputValue, callback) => {
         if (!inputValue) return
         const result = await ApiRequest.getSuggestions(inputValue)
@@ -28,12 +31,12 @@ export default function Form({submitForm, setCity, label, setLabel, isLoading}) 
                 onChange={e => {setLabel(e); setCity(e.value)}}
                 loadOptions={loadSuggestions}
                 className='select-suggestions'
-                placeholder={lang==='ru'?'Введите город...':'Search city...'}
+                placeholder={words.enterCity}
             />
             <div className='loader-button'>
                 {isLoading 
-                ? <Button>{lang==='ru'?<><Loader /></>:<><Loader /></>}</Button> 
-                : <Button>{lang==='ru'?<>Поиск</>:<>Search</>}</Button>}
+                ? <Button><Loader /></Button> 
+                : <Button>{words.search}</Button>}
             </div>
         </form>
     )
