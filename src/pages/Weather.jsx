@@ -5,7 +5,7 @@ import List from '../components/weather/List'
 import { useMessage } from '../hooks/message.hook'
 import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
-import { useDictionary } from '../utils/dictionary'
+import { useDictionary } from '../hooks/dictionary.hook'
 
 export default function Weather() {
     const {cards, setCards, lang} = useContext(AuthContext)
@@ -29,7 +29,7 @@ export default function Weather() {
             const isInCards = cards.filter(e => e.location.lat === data.location.lat && e.location.lon === data.location.lon)
             if (!!isInCards.length) { throw new Error(words.errorAlreadyInList) }
 
-            setCards([...cards, {city: city, location: data.location, current: data.current, lastUpdated: Date.now()}])
+            setCards([...cards, {city: city, location: data.location, current: data.current, lastUpdated: Date.now(), forecast: data.forecast}])
         } catch (e) {
             setError(e.message)
         } finally {

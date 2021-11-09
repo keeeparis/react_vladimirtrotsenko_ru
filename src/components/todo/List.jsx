@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../context'
-import { useDictionary } from '../../utils/dictionary'
+import { useDictionary } from '../../hooks/dictionary.hook'
 import Post from './Post'
 
 export default function List({posts, remove}) {

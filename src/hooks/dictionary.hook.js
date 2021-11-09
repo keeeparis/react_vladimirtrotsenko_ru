@@ -28,6 +28,7 @@ const ruWordsDatabase = {
     hour: 'ч.',
     feelsLike: 'Ощущается: ',
     kph: 'км/ч',
+    forecast: 'Прогноз погоды'
 }
 
 const enWordsDatabase = {
@@ -52,4 +53,5 @@ const enWordsDatabase = {
     hour: 'h',
     feelsLike: 'Feels like: ',
     kph: 'kph',
+    forecast: 'Forecast'
 }

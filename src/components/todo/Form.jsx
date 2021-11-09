@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import {useMessage} from '../../hooks/message.hook'
 import Button from '../UI/button/Button'
 import {AuthContext} from '../../context/index'
-import { useDictionary } from '../../utils/dictionary'
+import { useDictionary } from '../../hooks/dictionary.hook'
 
 export default function Form({create}) {
     const [post, setPost] = useState({title: '', body: '', id: ''})

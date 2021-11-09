@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import {AuthContext} from '../../context/index'
-import { useDictionary } from '../../utils/dictionary'
+import { useDictionary } from '../../hooks/dictionary.hook'
 import Button from '../UI/button/Button'
 
 export default function ChangePostForm({post, setVisible}) {

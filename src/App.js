@@ -4,6 +4,7 @@ import './styles/index.scss'
 import 'materialize-css'
 import {AuthContext} from './context/index'
 import { useEffect, useState } from "react";
+import ApiRequest from "./API/ApiRequest";
 
 function App() {
     const [cards, setCards] = useState([])
@@ -22,6 +23,20 @@ function App() {
             setLang(JSON.parse(localStorage.getItem('vtru_lang')))
         }
         setIsLoaded(false)
+    }, [])
+
+    useState(() => {
+        const refreshUponReload = async () => {
+            let dataCards = JSON.parse(localStorage?.getItem('vtru_cards'))
+            if (!dataCards?.length) return
+            
+            const refsreshedPosts = await Promise.all(dataCards.map(async post => {
+                const response = await ApiRequest.getData({lat: post.location.lat, lng: post.location.lon})
+                return {...response, lastUpdated: Date.now(), city: post.city}
+            }))
+            setCards(refsreshedPosts)
+        }
+        refreshUponReload()
     }, [])
 
     return (

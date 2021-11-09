@@ -37,6 +37,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
 }
 
 .card-item {
@@ -73,9 +74,16 @@ body {
     }
 }
 
+.card-forecast {
+    .element {
+        display: flex;
+        flex-direction: column;
+        p {text-align: center;}
+    }
+}
+
 .card-details {
     display: flex;
-    justify-content: space-around;
     align-items: flex-end;
     flex-grow: 1;
 
@@ -84,8 +92,13 @@ body {
         flex-direction: column;
         text-align: center;
         align-items: center;
+        i {font-size: 44px;}
+        p {font-size: 1.1rem;}
+        &:nth-of-type(1) {padding-right: 15px;}
+        &:nth-of-type(2) {padding-right: 65px;}
+        &:nth-of-type(3) {padding-right: 15px;}
     }
-    &.darken-2 img {filter: invert(1);}
+    &.darken-3 img {filter: invert(1);}
 }
 
 .card-close {
@@ -94,6 +107,8 @@ body {
     right: 10px;
     display: flex;
     z-index: 0;
+    button {padding: 5px;}
+    i {line-height: 1.8rem; font-size: 1.5rem; filter: invert(1);}
 }
 
 .big-icon {

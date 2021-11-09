@@ -2,10 +2,11 @@ import axios from "axios"
 
 export default class ApiRequest {
     static async getData(coords) {
-        const response = await axios.get('http://api.weatherapi.com/v1/current.json', {
+        const response = await axios.get('http://api.weatherapi.com/v1/forecast.json', {
             params: {
                 key: '827269b104da4cca8e7161054212110',
                 q: `${coords.lat}, ${coords.lng}`,
+                hour: '',
                 lang: 'ru'
             }
         })

@@ -3,7 +3,7 @@ import Modal from '../UI/modal/Modal'
 import Button from '../UI/button/Button'
 import ChangePostForm from './ChangePostForm'
 import { AuthContext } from '../../context'
-import { useDictionary } from '../../utils/dictionary'
+import { useDictionary } from '../../hooks/dictionary.hook'
 
 export default function Post({post, num, remove}) {
     const [modal, setModal] = useState(false)

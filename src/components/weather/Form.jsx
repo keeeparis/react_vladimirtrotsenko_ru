@@ -4,8 +4,8 @@ import Button from '../UI/button/Button'
 import AsyncSelect from 'react-select/async'
 import ApiRequest from '../../API/ApiRequest'    
 import { suggestionsDefaultOptionsEN, suggestionsDefaultOptionsRU } from '../../utils'
-import {AuthContext} from '../../context/index'
-import { useDictionary } from '../../utils/dictionary'
+import { AuthContext } from '../../context/index'
+import { useDictionary } from '../../hooks/dictionary.hook'
 
 export default function Form({submitForm, setCity, label, setLabel, isLoading}) {
     const {lang} = useContext(AuthContext)
@@ -35,8 +35,8 @@ export default function Form({submitForm, setCity, label, setLabel, isLoading}) 
             />
             <div className='loader-button'>
                 {isLoading 
-                ? <Button><Loader /></Button> 
-                : <Button>{words.search}</Button>}
+                ?   <Button><Loader /></Button> 
+                :   <Button>{words.search}</Button>}
             </div>
         </form>
     )

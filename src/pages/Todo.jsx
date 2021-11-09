@@ -7,7 +7,7 @@ import Button from '../components/UI/button/Button'
 import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
 import { usePosts } from '../hooks/sortingPosts.hook'
-import { useDictionary } from '../utils/dictionary'
+import { useDictionary } from '../hooks/dictionary.hook'
 
 export default function Todo() {
     const {posts, setPosts, lang} = useContext(AuthContext)

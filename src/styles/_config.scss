@@ -22,3 +22,8 @@ a {
     text-decoration: none;
     color: black;
 }
+
+// overwrite part
+.collapsible-body { padding: 1rem; border-bottom: 0;}
+.collapsible-header {border: 0;}
+.collapsible { box-shadow: none; border: 0;}
