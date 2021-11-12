@@ -8,7 +8,26 @@ import ApiRequest from "./API/ApiRequest";
 
 function App() {
     const [cards, setCards] = useState([])
-    const [posts, setPosts] = useState([])
+    const [tasks, setTasks] = useState({
+        toDo: {
+            name: 'To do',
+            items: [
+                {id: '1', content: 'First task'},
+                {id: '2', content: 'Sec task'},
+                {id: '3', content: 'Thi task'},
+                {id: '4', content: 'Four task'},
+                {id: '5', content: 'Fif task'}
+            ]
+        },
+        inProgress: {
+            name: 'In progress',
+            items: []
+        },
+        Done: {
+            name: 'Done',
+            items: []
+        }
+    })
     const [isLoaded, setIsLoaded] = useState(true)
     const [lang, setLang] = useState('')
 
@@ -16,8 +35,8 @@ function App() {
         if (localStorage.getItem('vtru_cards')) {
             setCards(JSON.parse(localStorage.getItem('vtru_cards')))
         }
-        if (localStorage.getItem('vtru_posts')) {
-            setPosts(JSON.parse(localStorage.getItem('vtru_posts')))
+        if (localStorage.getItem('vtru_tasks')) {
+            setTasks(JSON.parse(localStorage.getItem('vtru_tasks')))
         }
         if (localStorage.getItem('vtru_lang')) {
             setLang(JSON.parse(localStorage.getItem('vtru_lang')))
@@ -41,7 +60,7 @@ function App() {
 
     return (
         <AuthContext.Provider
-            value={{cards, setCards, posts, setPosts, isLoaded, lang, setLang}}
+            value={{cards, setCards, tasks, setTasks, isLoaded, lang, setLang}}
         >
             <BrowserRouter>
                 <AppRouter />

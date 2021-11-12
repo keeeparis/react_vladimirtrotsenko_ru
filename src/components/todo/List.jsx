@@ -18,7 +18,7 @@ export default function List({posts, remove}) {
     return (
         <div className='post-list'>
             <h3>{words.postList}</h3>
-            {posts.map((post, index) => 
+            {posts.tasks.map((post, index) => 
                 <Post post={post} key={post.id} num={index+1} remove={remove} />
             )}
         </div>

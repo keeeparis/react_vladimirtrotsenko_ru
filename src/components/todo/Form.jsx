@@ -1,23 +1,17 @@
 import React, { useContext, useState } from 'react'
-import {useMessage} from '../../hooks/message.hook'
 import Button from '../UI/button/Button'
-import {AuthContext} from '../../context/index'
+import { AuthContext } from '../../context/index'
 import { useDictionary } from '../../hooks/dictionary.hook'
 
 export default function Form({create}) {
-    const [post, setPost] = useState({title: '', body: '', id: ''})
+    const [post, setPost] = useState({id: '', content: ''})
     const {lang} = useContext(AuthContext)
     const words = useDictionary(lang)
-    const message = useMessage()
 
     const addNewPost = (event) => {
         event.preventDefault()
-        if (post.title === '' || post.body === '') {
-            message(words.errorNoNameDesc)
-            return
-        }
-        create({...post, id: Date.now()})
-        setPost({title: '', body: ''})
+        create({...post, id: Date.now().toString()})
+        setPost({id: '', content: ''})
     }
 
     const handleChange = (event) => {
@@ -28,17 +22,9 @@ export default function Form({create}) {
         <form>
             <input 
                 type="text" 
-                value={post.title}
+                value={post.content}
                 placeholder={words.enterName}
-                name='title'
-                onChange={handleChange}
-            />
-            <textarea 
-                name="body" 
-                value={post.body} 
-                placeholder={words.enterDescription}
-                cols="20" rows="10" 
-                className='materialize-textarea'
+                name='content'
                 onChange={handleChange}
             />
             <Button onClick={addNewPost}>{words.create}</Button>

@@ -8,7 +8,7 @@ export const useDictionary = (lang) => {
 
 const ruWordsDatabase = {
     create: 'Создать',
-    createPost: 'Создать пост', 
+    createTask: 'Создать задачу', 
     postList: 'Список постов',
     enterName: 'Введите заголовок...',
     enterDescription: 'Введите описание...',
@@ -33,7 +33,7 @@ const ruWordsDatabase = {
 
 const enWordsDatabase = {
     create: 'Create',
-    createPost: 'Create post', 
+    createTask: 'Create task', 
     postList: 'Posts list',
     enterName: 'Enter name...',
     enterDescription: 'Enter description...',
