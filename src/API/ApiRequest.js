@@ -7,7 +7,8 @@ export default class ApiRequest {
                 key: '827269b104da4cca8e7161054212110',
                 q: `${coords.lat}, ${coords.lng}`,
                 hour: '',
-                lang: 'ru'
+                lang: 'ru',
+                days: 2
             }
         })
         return response.data
@@ -30,7 +31,7 @@ export default class ApiRequest {
                 query: city,
                 maxresults: 10,
                 resultType: 'city',
-                // language: 'ru'
+                language: 'ru'
             }
         })
         return response.data

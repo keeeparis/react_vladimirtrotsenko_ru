@@ -7,17 +7,19 @@ import { useEffect, useState } from "react";
 import ApiRequest from "./API/ApiRequest";
 
 function App() {
-    const [cards, setCards] = useState([])
+    const [cards, setCards] = useState({
+        city: {
+            name: 'Weather',
+            items: [
+                // {id: '1', city: 'Nur-Sultan', location: '', current: '', lastUpdated: '', forecast: ''},
+                // {id: '2', city: 'Moscow', location: '', current: '', lastUpdated: '', forecast: ''}
+            ]
+        }
+    })
     const [tasks, setTasks] = useState({
         toDo: {
             name: 'To do',
-            items: [
-                {id: '1', content: 'First task'},
-                {id: '2', content: 'Sec task'},
-                {id: '3', content: 'Thi task'},
-                {id: '4', content: 'Four task'},
-                {id: '5', content: 'Fif task'}
-            ]
+            items: []
         },
         inProgress: {
             name: 'In progress',
@@ -46,14 +48,17 @@ function App() {
 
     useState(() => {
         const refreshUponReload = async () => {
-            let dataCards = JSON.parse(localStorage?.getItem('vtru_cards'))
-            if (!dataCards?.length) return
+            const data = JSON.parse(localStorage?.getItem('vtru_cards'))
+            if (!data.city.items.length) return
             
-            const refsreshedPosts = await Promise.all(dataCards.map(async post => {
-                const response = await ApiRequest.getData({lat: post.location.lat, lng: post.location.lon})
-                return {...response, lastUpdated: Date.now(), city: post.city}
+            const cityColumn = {...data.city}
+            const cityList = cityColumn.items
+
+            const refsreshedCards = await Promise.all(cityList.map(async card => {
+                const response = await ApiRequest.getData({lat: card.location.lat, lng: card.location.lon})
+                return {...response, lastUpdated: Date.now(), city: card.city, id: Date.now().toString()}
             }))
-            setCards(refsreshedPosts)
+            setCards({...data, city: {...cityColumn, items: refsreshedCards}})
         }
         refreshUponReload()
     }, [])

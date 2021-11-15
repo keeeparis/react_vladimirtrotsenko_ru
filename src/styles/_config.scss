@@ -24,6 +24,6 @@ a {
 }
 
 // overwrite part
-.collapsible-body { padding: 1rem; border-bottom: 0;}
-.collapsible-header {border: 0;}
+.collapsible-body { padding: 1rem; border-bottom: 0; .row {margin-bottom: 0.5em;} }
+.collapsible-header {border: 0; align-items: center;}
 .collapsible { box-shadow: none; border: 0;}
