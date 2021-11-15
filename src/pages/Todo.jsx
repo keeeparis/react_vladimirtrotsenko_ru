@@ -69,7 +69,6 @@ export default function Todo() {
             <Modal visible={modal} setVisible={setModal}>
                 <Form create={createTask} />
             </Modal>
-            {/* <List posts={posts} remove={removePost} /> */}
 
             <div style={{display: 'flex', justifyContent: 'center', height: '100%'}}>
                 <DragDropContext
