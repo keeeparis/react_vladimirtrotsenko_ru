@@ -19,7 +19,7 @@ export default function AppRouter() {
     return (
         <Routes>
             <Route path='/' element={<Navbar />} >
-                <Route index element={<Index />}/>
+                <Route index element={<Index />} />
                 <Route path='weather' element={<Weather />} />
                 <Route path='todo' element={<Todo />} />
             </Route>
