@@ -10,23 +10,20 @@ function App() {
     const [cards, setCards] = useState({
         city: {
             name: 'Weather',
-            items: [
-                // {id: '1', city: 'Nur-Sultan', location: '', current: '', lastUpdated: '', forecast: ''},
-                // {id: '2', city: 'Moscow', location: '', current: '', lastUpdated: '', forecast: ''}
-            ]
+            items: []
         }
     })
     const [tasks, setTasks] = useState({
         toDo: {
-            name: 'To do',
+            name: { en: 'To do', ru: 'Задачи' },
             items: []
         },
         inProgress: {
-            name: 'In progress',
+            name: { en: 'In progress', ru: 'В процессе' },
             items: []
         },
         Done: {
-            name: 'Done',
+            name: { en: 'Done', ru: 'Выполнено' },
             items: []
         }
     })

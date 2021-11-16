@@ -2,7 +2,7 @@ import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import Button from '../UI/button/Button'
 
-export default function Tasks({item, index, removeTask}) {
+export default function Task({item, index, removeTask}) {
     return (
         <Draggable key={item.id} draggableId={item.id} index={index}>
             {(provided, snapshot) => {
@@ -11,13 +11,13 @@ export default function Tasks({item, index, removeTask}) {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        style={{userSelect: 'none', padding: 16, margin: '0 0 8px 0', minHeight: '50px',
-                        backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86', color: 'white', display: 'flex', justifyContent: 'space-between',
-                        alignItems: 'center',
-                        ...provided.draggableProps.style}}
+                        className='task'
+                        style={{ backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86', ...provided.draggableProps.style }}
                     >
                         {item.content}
-                        <Button onClick={() => { removeTask(index) }}>Delete</Button>
+                        <Button onClick={() => { removeTask(index) }} style={{minWidth: 'fit-content', padding: '0 10px'}}>
+                            <i className='material-icons'>close</i>
+                        </Button>
                     </div>
                 )
             }}

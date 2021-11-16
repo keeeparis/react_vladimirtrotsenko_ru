@@ -10,6 +10,7 @@ export default function Form({create}) {
 
     const addNewPost = (event) => {
         event.preventDefault()
+        if (!post.content.trim()) return
         create({...post, id: Date.now().toString()})
         setPost({id: '', content: ''})
     }
@@ -20,14 +21,20 @@ export default function Form({create}) {
 
     return (
         <form>
-            <input 
-                type="text" 
-                value={post.content}
-                placeholder={words.enterName}
-                name='content'
-                onChange={handleChange}
-            />
-            <Button onClick={addNewPost}>{words.create}</Button>
+            <div className='input-field'>
+                <textarea 
+                    type="text" 
+                    value={post.content}
+                    name='content'
+                    onChange={handleChange}
+                    className='materialize-textarea validate'
+                    id='textarea'
+                    required={true}
+                />
+                <label htmlFor="textarea">{words.enterTask}</label>
+                <span className='helper-text' data-error={words.emptyInput}></span>
+            </div>
+            <Button onClick={addNewPost} style={{display: 'block', marginLeft: 'auto'}}>{words.create}</Button>
         </form>
     )
 }

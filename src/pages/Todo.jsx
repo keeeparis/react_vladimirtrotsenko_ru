@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import Form from '../components/todo/Form'
-// import List from '../components/todo/List'
 import Modal from '../components/UI/modal/Modal'
 import Button from '../components/UI/button/Button'
 import { AuthContext } from '../context'
@@ -70,7 +69,7 @@ export default function Todo() {
                 <Form create={createTask} />
             </Modal>
 
-            <div style={{display: 'flex', justifyContent: 'center', height: '100%'}}>
+            <div className='todo-columns'>
                 <DragDropContext
                     onDragEnd={(result) => onDragEnd(result, tasks, setTasks)}    
                 >

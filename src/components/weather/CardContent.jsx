@@ -24,7 +24,7 @@ export default function CardContent({words, item, refEl, lang}) {
                             <p>{Math.floor(item.forecast.forecastday[0].day.mintemp_c)}&deg;</p>
                         </div>
                     </div>
-                    <p>{words.feelsLike}{Math.round(item.current.feelslike_c)}&#8451;</p>
+                    <p>{words.feelsLike}{Math.round(item.current.feelslike_c)}&deg;</p>
                 </div>
                 <img src={item.current.condition.icon} alt="weather icon" className='big-icon'/>
             </div>

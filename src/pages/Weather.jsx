@@ -30,8 +30,6 @@ export default function Weather() {
             const isInCards = cards.city.items.filter(e => e.location.lat === data.location.lat && e.location.lon === data.location.lon)
             if (!!isInCards.length) { throw new Error(words.errorAlreadyInList) }
 
-            // setCards([...cards, {city: city, location: data.location, current: data.current, lastUpdated: Date.now(), forecast: data.forecast}])
-            // setCards({...cards, city: })
             const newCity = {city: city, location: data.location, current: data.current, lastUpdated: Date.now(), forecast: data.forecast, id: Date.now().toString()}
             const cityColumn = {...cards.city}
             const cityItems = cityColumn.items

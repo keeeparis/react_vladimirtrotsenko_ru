@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import Tasks from './Tasks'
+import Task from './Task'
 import { Droppable } from 'react-beautiful-dnd'
 import { AuthContext } from '../../context'
 
 export default function Column({columnId, column}) {
-    const {tasks, setTasks} = useContext(AuthContext)
+    const {tasks, setTasks, lang} = useContext(AuthContext)
 
     const removeTask = (index) => {
         const newList = {...tasks}
@@ -13,8 +13,8 @@ export default function Column({columnId, column}) {
     }
 
     return (
-        <div key={columnId} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-            <h2>{column.name}</h2>
+        <div key={columnId} className='todo-column'>
+            <h3>{column.name[lang]}</h3>
             <div style={{margin: 8}}>
                 <Droppable droppableId={columnId} key={columnId} >
                     {(provided, snapshot) => {
@@ -22,10 +22,10 @@ export default function Column({columnId, column}) {
                             <div
                                 {...provided.droppableProps} 
                                 ref={provided.innerRef} 
-                                style={{ background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey', padding: 4, width: 250, minHeight: 300}}
+                                style={{ background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey', padding: 4, width: 300, minHeight: 300}}
                             >
                                 {column.items.map((item, index) => 
-                                    <Tasks item={item} index={index} key={index} removeTask={removeTask} />
+                                    <Task item={item} index={index} key={index} removeTask={removeTask} />
                                 )}
                                 {provided.placeholder}
                             </div>

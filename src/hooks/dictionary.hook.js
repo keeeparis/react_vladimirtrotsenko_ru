@@ -12,6 +12,7 @@ const ruWordsDatabase = {
     postList: 'Список постов',
     enterName: 'Введите заголовок...',
     enterDescription: 'Введите описание...',
+    enterTask: 'Что Вам нужно сделать?',
     errorNoNameDesc: 'Введите название и описание',
     searching: 'Поиск...',
     sorting: 'Сортировка',
@@ -28,7 +29,8 @@ const ruWordsDatabase = {
     hour: 'ч.',
     feelsLike: 'Ощущается: ',
     kph: 'км/ч',
-    forecast: 'Прогноз погоды'
+    forecast: 'Прогноз погоды',
+    emptyInput: 'Вы не заполнили это поле'
 }
 
 const enWordsDatabase = {
@@ -37,6 +39,7 @@ const enWordsDatabase = {
     postList: 'Posts list',
     enterName: 'Enter name...',
     enterDescription: 'Enter description...',
+    enterTask: 'What you have to do?',
     errorNoNameDesc: 'Enter name and description',
     searching: 'Searching...',
     sorting: 'Sort',
@@ -53,5 +56,6 @@ const enWordsDatabase = {
     hour: 'h',
     feelsLike: 'Feels like: ',
     kph: 'kph',
-    forecast: 'Forecast'
+    forecast: 'Forecast',
+    emptyInput: 'You haven\'t fillied this in'
 }

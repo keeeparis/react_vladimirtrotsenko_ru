@@ -27,3 +27,12 @@ a {
 .collapsible-body { padding: 1rem; border-bottom: 0; .row {margin-bottom: 0.5em;} }
 .collapsible-header {border: 0; align-items: center;}
 .collapsible { box-shadow: none; border: 0;}
+
+.input-field textarea[type=text]:focus {
+    border-bottom: 1px solid #456c86;
+    box-shadow: 0 1px 0 0 #456c86;
+}
+
+.input-field textarea[type=text]:focus + label {
+    color: #456c86;
+}
