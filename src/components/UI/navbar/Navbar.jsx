@@ -17,7 +17,8 @@ export default function Navbar() {
                 <div className={styles.list}>
                     <Link to='/'>Home</Link> | {' '}
                     <Link to='weather'>Weather</Link> | {' '}
-                    <Link to='todo'>Todo</Link>
+                    <Link to='todo'>Todo</Link> | {' '}
+                    <Link to='timeto'>TimeTo</Link> 
                 </div>
             </div>
             <div className={styles.language}>

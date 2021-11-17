@@ -7,7 +7,7 @@ const herokuProxy = 'https://frozen-ocean-28906.herokuapp.com/'
 export default class ApiRequest {
     static async getData(coords) {
         try {
-            const response = await axios.get(`${herokuProxy}http://api.weatherapi.com/v1/forecast.json`, {
+            const response = await axios.get(`http://api.weatherapi.com/v1/forecast.json`, {
                 params: {
                     key: '827269b104da4cca8e7161054212110',
                     q: `${coords.lat}, ${coords.lng}`,
@@ -22,7 +22,7 @@ export default class ApiRequest {
 
     static async getCoords(city) {
         try {
-            const response = await axios.get(`${herokuProxy}https://api.opencagedata.com/geocode/v1/json`, {
+            const response = await axios.get(`https://api.opencagedata.com/geocode/v1/json`, {
                 params: {
                     key: '227110303242476cae97b6c40e24a8e1',
                     q: city

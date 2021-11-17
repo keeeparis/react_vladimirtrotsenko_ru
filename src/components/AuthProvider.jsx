@@ -3,6 +3,9 @@ import { AuthContext } from '../context'
 import ApiRequest from '../API/ApiRequest'
 
 export default function AuthProvider({children}) {
+    const [timeto, setTimeto] = useState({
+        event: ''
+    })
     const [cards, setCards] = useState({
         city: {
             name: 'Weather',
@@ -36,6 +39,9 @@ export default function AuthProvider({children}) {
         if (localStorage.getItem('vtru_lang')) {
             setLang(JSON.parse(localStorage.getItem('vtru_lang')))
         }
+        if (localStorage.getItem('vtru_timeto')) {
+            setTimeto(JSON.parse(localStorage.getItem('vtru_timeto')))
+        }
         setIsLoaded(false)
     }, [])
 
@@ -57,7 +63,9 @@ export default function AuthProvider({children}) {
     }, [])
 
     return (
-        <AuthContext.Provider value={{cards, setCards, tasks, setTasks, isLoaded, lang, setLang}}>
+        <AuthContext.Provider 
+            value={{cards, setCards, tasks, setTasks, isLoaded, lang, setLang, timeto, setTimeto}}
+        >
             {children}
         </AuthContext.Provider>
     )
