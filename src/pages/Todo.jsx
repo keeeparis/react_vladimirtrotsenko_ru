@@ -64,7 +64,8 @@ export default function Todo() {
 
     return (
         <div className='content'>
-            <Button onClick={() => setModal(true)} style={{width: 'fit-content'}} color={['green darken-4']}>{words.createTask}</Button>
+            <h2>Todo App</h2>
+            <Button onClick={() => setModal(true)} style={{width: 'fit-content', height: '-webkit-fill-available'}} color={['green darken-4']}>{words.createTask}</Button>
             <Modal visible={modal} setVisible={setModal}>
                 <Form create={createTask} />
             </Modal>

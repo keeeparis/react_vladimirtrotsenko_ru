@@ -7,25 +7,23 @@ import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
 import { useDictionary } from '../hooks/dictionary.hook'
 import { DragDropContext } from 'react-beautiful-dnd'
+import { useFetching } from '../hooks/fetching.hook'
 
 export default function Weather() {
     const {cards, setCards, lang} = useContext(AuthContext)
     const [city, setCity] = useState('')
     const [labelForSelect, setLabelForSelect] = useState('')
-    const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(null)
     const message = useMessage()
+    const {request, isLoading, isError, setIsError} = useFetching()
     const words = useDictionary(lang)
 
     const submitForm = async (e) => {
         e.preventDefault()
         try {
-            setIsLoading(true)
-
             if (!city.length) { throw new Error(words.errorNoSelectCity) }
 
-            const coords = await ApiRequest.getCoords(city)
-            const data = await ApiRequest.getData(coords)
+            const coords = await request(() => ApiRequest.getCoords(city))
+            const data = await request(() => ApiRequest.getData(coords))
 
             const isInCards = cards.city.items.filter(e => e.location.lat === data.location.lat && e.location.lon === data.location.lon)
             if (!!isInCards.length) { throw new Error(words.errorAlreadyInList) }
@@ -37,9 +35,8 @@ export default function Weather() {
             setCards({...cards, city: cityColumn})
 
         } catch (e) {
-            setError(e.message)
+            setIsError(e.message)
         } finally {
-            setIsLoading(false)
             setCity('')
             setLabelForSelect('')
         }
@@ -85,15 +82,14 @@ export default function Weather() {
     }
 
     useEffect(() => {
-        message(error)
-        setError(null)
-    }, [error, setError, message])
+        message(isError)
+    }, [isError, message])
 
     useLocalStorage('vtru_cards', cards)
 
     return (
         <div className='content'>
-            <h2>Weather JSX</h2>
+            <h2>Weather App</h2>
             <Form submitForm={submitForm} setCity={setCity} label={labelForSelect} setLabel={setLabelForSelect} isLoading={isLoading}/>
             <div className='city-list'>
                 <DragDropContext
