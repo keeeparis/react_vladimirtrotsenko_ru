@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import styles from './Navbar.module.scss'
 import Button from '../button/Button'
 import { AuthContext } from '../../../context'
@@ -24,7 +24,6 @@ export default function Navbar() {
                 <Button onClick={() => setLang('en')}>EN</Button>
                 <Button onClick={() => setLang('ru')}>RU</Button>
             </div>
-            <Outlet />
         </>
     )
 }

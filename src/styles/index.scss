@@ -11,7 +11,21 @@ body {
     flex-direction: column;
     align-items: center;
     transition: all 1s ease-in-out;
+    flex: 1 0 auto;
 }
+// index component
+
+.main {
+    display: flex;
+    align-items: center;
+    padding: 25px 0;
+    img { width: 400px; height: 300px; border: 1px solid lightgray; margin-right: 50px;}
+    .text {
+        width: 500px;
+    }
+}
+
+
 
 // weather component
 .form-weather {
@@ -47,7 +61,10 @@ body {
     width: 270px;
     box-shadow: none;
     font-size: 0.85em;
-    transition: background-color 0.2s ease ;
+    transition: background-color 0.2s ease;
+    min-height: 435px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card .card-content {

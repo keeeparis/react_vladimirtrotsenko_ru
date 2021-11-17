@@ -30,7 +30,8 @@ const ruWordsDatabase = {
     feelsLike: 'Ощущается: ',
     kph: 'км/ч',
     forecast: 'Прогноз погоды',
-    emptyInput: 'Вы не заполнили это поле'
+    emptyInput: 'Вы не заполнили поле ввода',
+    welcome: 'Добро пожаловать'
 }
 
 const enWordsDatabase = {
@@ -39,7 +40,7 @@ const enWordsDatabase = {
     postList: 'Posts list',
     enterName: 'Enter name...',
     enterDescription: 'Enter description...',
-    enterTask: 'What you have to do?',
+    enterTask: 'What do you have to do?',
     errorNoNameDesc: 'Enter name and description',
     searching: 'Searching...',
     sorting: 'Sort',
@@ -57,5 +58,6 @@ const enWordsDatabase = {
     feelsLike: 'Feels like: ',
     kph: 'kph',
     forecast: 'Forecast',
-    emptyInput: 'You haven\'t fillied this in'
+    emptyInput: 'You haven\'t fill input',
+    welcome: 'Welcome'
 }
