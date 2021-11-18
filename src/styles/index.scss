@@ -12,6 +12,7 @@ body {
     align-items: center;
     transition: all 1s ease-in-out;
     flex: 1 0 auto;
+    margin-bottom: 100px;
 }
 // index component
 
@@ -186,4 +187,30 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+// timeto component
+
+.showtime {
+    font-size: 4em;
+    color: #2a2a2a;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: 50px 0;
+    
+    .days {
+        font-family: 'Poiret One';
+        padding-right: 50px;
+        span { font-size: 3.3em; }
+        .text {display: inline;}
+    }
+    .time { 
+        font-family: 'Poiret One';
+        display: flex;
+        justify-content: flex-end;
+        div {width: 500px; padding-left: 100px;}
+        span {font-size: 1.5em;} 
+    }
+   
 }

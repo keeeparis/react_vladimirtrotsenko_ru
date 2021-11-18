@@ -31,3 +31,50 @@ export const suggestionsDefaultOptionsEN = [
     {label: 'Tokyo, Japan', value: 'Tokyo, Japan'},
     {label: 'Berlin, Germany', value: 'Berlin, Germany'},
 ]
+
+export const calculateTime = (time, day, hour, min, sec) => {
+    // const yearFind = 12*30*24*60*60*1000
+    // const monthFind = 30*24*60*60*1000
+    const daysFind = 24*60*60*1000
+    const hourFind = 60*60*1000
+    const minFind = 60*1000
+    const secFind = 1000
+
+    let remainder = time
+
+    // if (time / yearFind > 1) {
+    //     year = Math.floor(time / yearFind)
+    //     remainder = time % yearFind
+    // }
+    // if (remainder / monthFind > 1) {
+    //     month = Math.floor(remainder / monthFind)
+    //     remainder = remainder % monthFind
+    // }
+    if (remainder / daysFind > 1) {
+        day = Math.floor(remainder / daysFind)
+        remainder = remainder % daysFind
+    }
+    if (remainder / hourFind > 1) {
+        hour = Math.floor(remainder / hourFind)
+        remainder = remainder % hourFind
+    }
+    if (remainder / minFind > 1) {
+        min = Math.floor(remainder / minFind)
+        remainder = remainder % minFind
+    }
+    if (remainder / secFind > 1) {
+        sec = Math.floor(remainder / secFind)
+    }
+
+    return [day, hour, min, sec]
+}
+
+export const endsWith = (number) => {
+    if (number < 15) return number
+    let numberArray = number.toString()
+    return +numberArray.split('')[numberArray.length - 1]
+}
+
+export const addZeroIfOneNumber = (number) => {
+    return number.toString().length === 1 ? `0${number}` : number
+}

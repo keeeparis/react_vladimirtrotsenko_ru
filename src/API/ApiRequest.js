@@ -14,6 +14,10 @@ export default class ApiRequest {
                     hour: '',
                     lang: 'ru',
                     days: 2
+                },
+                headers: {
+                    'cache-control': 'public, max-age=60',
+                    'content-type': 'application/json'
                 }
             })
             return response.data

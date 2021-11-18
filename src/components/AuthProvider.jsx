@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { AuthContext } from '../context'
 import ApiRequest from '../API/ApiRequest'
+import Cookies from 'universal-cookie'
 
 export default function AuthProvider({children}) {
     const [timeto, setTimeto] = useState({
@@ -28,6 +29,12 @@ export default function AuthProvider({children}) {
     })
     const [isLoaded, setIsLoaded] = useState(true)
     const [lang, setLang] = useState('')
+
+    //TODO: куки тест
+    const cookies = new Cookies()
+    if (!cookies.get('myCat')) {
+        cookies.set('myCat', 'Pacman', {maxAge: 36e5, path: '/'})
+    }
 
     useEffect(() => {
         if (localStorage.getItem('vtru_cards')) {
@@ -64,7 +71,7 @@ export default function AuthProvider({children}) {
 
     return (
         <AuthContext.Provider 
-            value={{cards, setCards, tasks, setTasks, isLoaded, lang, setLang, timeto, setTimeto}}
+            value={{cards, setCards, tasks, setTasks, isLoaded, lang, setLang, timeto, setTimeto, cookies}}
         >
             {children}
         </AuthContext.Provider>
