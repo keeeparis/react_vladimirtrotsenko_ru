@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
 import styles from './Navbar.module.scss'
-import Button from '../button/Button'
 import { AuthContext } from '../../../context'
 import { useLocalStorage } from '../../../hooks/localstorage.hook'
+import CustomLink from '../customLink/CustomLink'
 
 export default function Navbar() {
     const {lang, setLang} = useContext(AuthContext)
+    const [btnClicked, setBtnClicked] = useState(lang==='en'?0:1)
 
     useLocalStorage('vtru_lang', lang)
     
@@ -15,16 +15,17 @@ export default function Navbar() {
             <div className={styles.navbar}>
                 <h1>Vladimir Trotsenko</h1>
                 <div className={styles.list}>
-                    <Link to='/'>Home</Link> | {' '}
-                    <Link to='weather'>Weather</Link> | {' '}
-                    <Link to='todo'>Todo</Link> | {' '}
-                    <Link to='timeto'>TimeTo</Link> 
+                    <CustomLink to='/'>Home</CustomLink>
+                    <CustomLink to='weather'>Weather</CustomLink>
+                    <CustomLink to='todo'>Todo</CustomLink>
+                    <CustomLink to='timeto'>TimeTo</CustomLink>
                 </div>
             </div>
             <div className={styles.language}>
-                <Button onClick={() => setLang('en')}>EN</Button>
-                <Button onClick={() => setLang('ru')}>RU</Button>
+                <button onClick={() => { setLang('en'); setBtnClicked(0) }} className={btnClicked===0?styles.active:null}>EN</button>
+                <button onClick={() => { setLang('ru'); setBtnClicked(1) }} className={btnClicked===1?styles.active:null}>RU</button>
             </div>
+            
         </>
     )
 }

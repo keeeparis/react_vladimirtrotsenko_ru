@@ -20,6 +20,19 @@ export default function Form({submitForm, setCity, label, setLabel, isLoading}) 
         })))
     }
 
+    const customeStyles = {
+        option: (provided, state) => ({
+            ...provided,
+            boxShadow: 'inset 2px 0px indianred'
+        }),
+        control: (provided, state) => ({
+            ...provided,
+            borderColor: '#bf360c !important',
+            boxShadow: '5px 5px #bf360c',
+            borderRadius: '0'
+        })
+    }
+
     return (
         <form
             onSubmit={submitForm}
@@ -31,6 +44,7 @@ export default function Form({submitForm, setCity, label, setLabel, isLoading}) 
                 onChange={e => {setLabel(e); setCity(e.value)}}
                 loadOptions={loadSuggestions}
                 className='select-suggestions'
+                styles={customeStyles}
                 placeholder={words.enterCity}
             />
             <div className='loader-button'>

@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie'
 
 export default function AuthProvider({children}) {
     const [timeto, setTimeto] = useState({
-        event: ''
+        event: '2022-01-01T00:00'
     })
     const [cards, setCards] = useState({
         city: {
@@ -16,19 +16,25 @@ export default function AuthProvider({children}) {
     const [tasks, setTasks] = useState({
         toDo: {
             name: { en: 'To do', ru: 'Задачи' },
-            items: []
+            items: [{id: '1', content: 'Погулять с собакой'}, {id: '2', content: 'Сходить в кино'}],
+            colorColumn: '#cccccc',
+            colorTask: '#374167' 
         },
         inProgress: {
             name: { en: 'In progress', ru: 'В процессе' },
-            items: []
+            items: [{id: '3', content: 'Сделать уборку'}],
+            colorColumn: '#cccccc',
+            colorTask: '#374167'
         },
         Done: {
             name: { en: 'Done', ru: 'Выполнено' },
-            items: []
+            items: [],
+            colorColumn: '#cccccc',
+            colorTask: '#374167'
         }
     })
     const [isLoaded, setIsLoaded] = useState(true)
-    const [lang, setLang] = useState('')
+    const [lang, setLang] = useState(navigator.language.substr(0, 2) || navigator.userLanguage.substr(0, 2) || '')
 
     //TODO: куки тест
     const cookies = new Cookies()

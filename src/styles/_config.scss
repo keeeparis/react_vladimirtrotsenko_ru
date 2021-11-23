@@ -13,30 +13,30 @@
 
 @font-face {
     font-family: 'Open Sans';
+    font-weight: 500;
+    font-style: normal;
+    src: url('../media/fonts/Open_Sans/OpenSans/OpenSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 600;
+    font-style: normal;
+    src: url('../media/fonts/Open_Sans/OpenSans/OpenSans-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: 700;
+    font-style: normal;
+    src: url('../media/fonts/Open_Sans/OpenSans/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
     font-weight: 400;
     font-style: italic;
     src: url('../media/fonts/Open_Sans/OpenSans/OpenSans-Italic.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Digital';
-    font-weight: 400;
-    font-style: normal;
-    src: url('../media/fonts/digital-7/digital-7.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Digital';
-    font-weight: 500;
-    font-style: normal;
-    src: url('../media/fonts/digital-7/digital-7-mono.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Timebomb';
-    font-weight: 400;
-    font-style: normal;
-    src: url('../media/fonts/ticking-timebomb-bb/TickingTimebombBB.ttf') format('truetype');
 }
 
 @font-face {
@@ -48,7 +48,7 @@
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 // overwrite part
@@ -63,4 +63,8 @@ a {
 
 .input-field textarea[type=text]:focus + label {
     color: #456c86;
+}
+
+.btn {
+    box-shadow: none;
 }

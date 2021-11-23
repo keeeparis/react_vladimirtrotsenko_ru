@@ -21,7 +21,7 @@ export default function List({columnId, column}) {
                     <div
                         {...provided.droppableProps} 
                         ref={provided.innerRef}
-                        style={{ background: snapshot.isDraggingOver ? 'lightblue' : 'white', 
+                        style={{ background: snapshot.isDraggingOver ? 'lightblue' : 'inherit', 
                             padding: 8, 
                             display: 'flex', 
                             flexWrap: 'wrap', 

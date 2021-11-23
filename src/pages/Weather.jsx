@@ -89,7 +89,7 @@ export default function Weather() {
 
     return (
         <div className='content'>
-            <h2>Weather App</h2>
+            <h2 className='title'>Weather App</h2>
             <Form submitForm={submitForm} setCity={setCity} label={labelForSelect} setLabel={setLabelForSelect} isLoading={isLoading}/>
             <div className='city-list'>
                 <DragDropContext

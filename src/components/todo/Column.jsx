@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import Task from './Task'
 import { Droppable } from 'react-beautiful-dnd'
 import { AuthContext } from '../../context'
+import FormColor from './FormColor'
 
 export default function Column({columnId, column}) {
     const {tasks, setTasks, lang} = useContext(AuthContext)
@@ -16,17 +17,24 @@ export default function Column({columnId, column}) {
         <>
             <div key={columnId} className='todo-column'>
                 <h3>{column.name[lang]}</h3>
-                <div style={{margin: 8}}>
+                <FormColor 
+                    column={column}
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        setTasks({...tasks, [columnId]: {...column, [e.target[0].name]: e.target[0].value, [e.target[1].name]: e.target[1].value}})
+                    }}
+                />
+                <div className='list'>
                     <Droppable droppableId={columnId} key={columnId} >
                         {(provided, snapshot) => {
                             return (
                                 <div
                                     {...provided.droppableProps} 
                                     ref={provided.innerRef} 
-                                    style={{ background: snapshot.isDraggingOver ? 'lightblue' : 'lightgrey', padding: 4, width: 300, minHeight: 300}}
+                                    style={{ background: snapshot.isDraggingOver ? 'lightblue' : column.colorColumn, padding: 4, width: 300, minHeight: 300}}
                                 >
                                     {column.items.map((item, index) => 
-                                        <Task item={item} index={index} key={index} removeTask={removeTask} />
+                                        <Task item={item} index={index} key={index} removeTask={removeTask} colorTask={column.colorTask} />
                                     )}
                                     {provided.placeholder}
                                 </div>

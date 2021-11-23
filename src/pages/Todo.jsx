@@ -64,12 +64,17 @@ export default function Todo() {
 
     return (
         <div className='content'>
-            <h2>Todo App</h2>
-            <Button onClick={() => setModal(true)} style={{width: 'fit-content', height: '-webkit-fill-available'}} color={['green darken-4']}>{words.createTask}</Button>
+            <h2 className='title'>Todo App</h2>
+            <Button 
+                onClick={() => setModal(true)} 
+                style={{width: 'fit-content', height: '-webkit-fill-available', color: 'black', fontWeight: '500'}} 
+                color={['lime accent-3']}
+            >
+                {words.createTask}
+            </Button>
             <Modal visible={modal} setVisible={setModal}>
                 <Form create={createTask} />
             </Modal>
-
             <div className='todo-columns'>
                 <DragDropContext
                     onDragEnd={(result) => onDragEnd(result, tasks, setTasks)}    

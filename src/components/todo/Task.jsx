@@ -2,7 +2,7 @@ import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import Button from '../UI/button/Button'
 
-export default function Task({item, index, removeTask}) {
+export default function Task({item, index, removeTask, colorTask}) {
     return (
         <Draggable key={item.id} draggableId={item.id} index={index}>
             {(provided, snapshot) => {
@@ -12,7 +12,7 @@ export default function Task({item, index, removeTask}) {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         className='task'
-                        style={{ backgroundColor: snapshot.isDragging ? '#263b4a' : '#456c86', ...provided.draggableProps.style }}
+                        style={{ backgroundColor: snapshot.isDragging ? '#263b4a' : colorTask, ...provided.draggableProps.style }}
                     >
                         {item.content}
                         <Button onClick={() => { removeTask(index) }} style={{minWidth: 'fit-content', padding: '0 10px'}}>

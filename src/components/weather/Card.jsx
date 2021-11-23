@@ -17,7 +17,7 @@ export default function Card({item, index, removeCard}) {
     const words = useDictionary(lang)
 
     const isDayOrNightClasses = useMemo(() => {
-        return item.current.is_day ? 'blue-grey lighten-2' : 'blue-grey darken-3 white-text'
+        return item.current.is_day ? 'light-blue lighten-3' : 'blue darken-4 white-text'
     }, [item])
 
     // By default, using current API, it restricts to update more than one time in 180sec.
@@ -32,7 +32,7 @@ export default function Card({item, index, removeCard}) {
     }
 
     const refEl = useRef(null)
-
+    
     useEffect(() => {
         window.M.Collapsible.init(refEl.current)
     })
@@ -51,7 +51,7 @@ export default function Card({item, index, removeCard}) {
                         
                         style={{...provided.draggableProps.style}}
                     >
-                        <div className={'card card-item blue-grey '.concat(snapshot.isDragging ? 'darken-2': 'darken-1')}>
+                        <div className={'card card-item light-blue '.concat(snapshot.isDragging ? 'darken-3': 'darken-2')}>
                             <CardHeader 
                                 removeCard={removeCard}
                                 refreshData={refreshData}

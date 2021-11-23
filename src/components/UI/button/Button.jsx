@@ -4,7 +4,7 @@ import React from 'react'
 export default function Button({children, btn=true, color, ...props}) {
     let result = ['waves-effect']
     result = (btn) ? [...result, 'btn'] : result
-    const standardColor = ['indigo', 'lighten-2']
+    const standardColor = ['deep-orange', 'darken-4']
     result = (color) ? [...result, ...color] : [...result, ...standardColor]
     
     return (

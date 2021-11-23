@@ -64,7 +64,7 @@ export default function TimeTo() {
                 type="datetime-local"
                 value={timeto.event} 
                 onChange={(e) => {setTimeto({...timeto, event: e.target.value})}}
-                style={{width: '25%', fontFamily: 'Poiret One', fontWeight: 600, marginBottom: 20}}
+                className='showtime-input'
                 min={new Date().toISOString().slice(0, 16)}
             />
             <Button onClick={findTimeTo} style={{fontFamily: 'Poiret One'}}> {words.calculate} </Button>

@@ -32,8 +32,8 @@ export default function CardContent({words, item, refEl, lang}) {
                 <ul className="collapsible" ref={refEl}>
                     <li>
                         <div className="collapsible-header"><i className="material-icons">filter_drama</i>{words.forecast}</div>
-                        <div className="collapsible-body blue-grey lighten-1">
-                            <ForecastItem forecast={item.forecast} localTime={item.location.localtime}/>
+                        <div className="collapsible-body blue lighten-2">
+                            <ForecastItem forecast={item.forecast} localTime={item.location.localtime} currentTemp={item.current.temp_c}/>
                         </div>
                     </li>
                 </ul>
