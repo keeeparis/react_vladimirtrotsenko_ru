@@ -62,12 +62,13 @@ h2.title {
 
 .link {
     position: relative;
+    display: inline-block;
     &::before {
         content: '';
         background-color: aliceblue;
         bottom: 0;
         left: 0;
-        height: 0.01em;
+        height: 1px;
         width: 100%;
         position: absolute;
         // transform: scaleX(100); 
@@ -164,6 +165,7 @@ h2.title {
     width: 100%;
     padding: 0 20px 15px;
     padding-bottom: 30px;
+    font-size: 16px;
 }
 
 @media (min-width: 1024px) {
@@ -334,8 +336,40 @@ h2.title {
         margin: 8px;
     }
     &:nth-of-type(1) .list {box-shadow: -5px 5px 0 0 darkred;}
-    &:nth-of-type(2) .list {box-shadow: 0 5px 0 0 darkgoldenrod;}
-    &:nth-of-type(3) .list {box-shadow: 5px 5px 0 0 green;}
+    &:nth-of-type(2) .list {box-shadow: 0 5px 0 0 darkred;}
+    &:nth-of-type(3) .list {box-shadow: 5px 5px 0 0 darkred;}
+
+    .name {
+        display: flex; 
+        align-items: baseline;
+        gap: 15px;
+        button {
+            transform: rotateZ(0);
+            transition: all 0.5s cubic-bezier(0.5, 0.96, 0.75, 0.86);
+            color: white;
+            border: 1px solid lightgray;
+            padding: 0 10px;
+            &.active {
+                transform: rotateZ(180deg);
+            }
+        }
+    }
+
+
+    form {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out, opacity 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        &.active {
+            max-height: 50px; // height of the form element
+            opacity: 1;
+            transition: max-height 0.5s ease-out, opacity 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+        }
+        .wrapper { display: flex; gap: 15px;}
+        .input-wrapper { display: flex; flex-direction: column; align-items: center }
+        button { font-size: 0.8em; padding: 0 10px; height: 27px; line-height: 27px }
+    }
 }
 
 .task {

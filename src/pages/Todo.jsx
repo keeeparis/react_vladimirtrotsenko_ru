@@ -67,8 +67,7 @@ export default function Todo() {
             <h2 className='title'>Todo App</h2>
             <Button 
                 onClick={() => setModal(true)} 
-                style={{width: 'fit-content', height: '-webkit-fill-available', color: 'black', fontWeight: '500'}} 
-                color={['lime accent-3']}
+                style={{fontWeight: '500'}} 
             >
                 {words.createTask}
             </Button>

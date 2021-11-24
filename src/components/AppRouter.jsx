@@ -5,14 +5,14 @@ import Todo from '../pages/Todo'
 import Index from '../pages/Index'
 import TimeTo from '../pages/TimeTo'
 import { AuthContext } from '../context'
-import Loader from './UI/loader/Loader'
+import CardLoader from './UI/loader/Loader'
 import Layout from './Layout'
 
 export default function AppRouter() {
     const {isLoaded} = useContext(AuthContext)
 
     return (isLoaded) 
-    ?   <Loader /> 
+    ?   <CardLoader /> 
     :   <Routes>
             <Route path='/' element={<Layout />} >
                 <Route index element={<Index />} />

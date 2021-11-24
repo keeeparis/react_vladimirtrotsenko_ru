@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../../context'
+import { useDictionary } from '../../hooks/dictionary.hook'
 import Button from '../UI/button/Button'
 
 export default function FormColor({column, ...props}) {
+    const {lang} = useContext(AuthContext)
     const [columnColor, setColumnColor] = useState(column.colorColumn)
     const [taskColor, setTaskColor] = useState(column.colorTask)
+    const words = useDictionary(lang)
 
     return (
-        <form {...props}>
-            <div style={{display: 'flex', gap: 15}}>
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <form {...props}> 
+            <div className='wrapper'>
+                <div className='input-wrapper'>
                     <input 
                         type="color" 
                         name="colorColumn" 
@@ -16,9 +20,9 @@ export default function FormColor({column, ...props}) {
                         value={columnColor} 
                         onChange={(e) => setColumnColor(e.target.value)} 
                     />
-                    <label htmlFor="list">Фон списка</label>
+                    <label htmlFor="list">{words.colorColumn}</label>
                 </div>
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <div className='input-wrapper'>
                     <input 
                         type="color" 
                         name="colorTask" 
@@ -26,9 +30,9 @@ export default function FormColor({column, ...props}) {
                         value={taskColor}
                         onChange={(e) => setTaskColor(e.target.value)} 
                     />
-                    <label htmlFor="task">Фон задачи</label>
+                    <label htmlFor="task">{words.colorTask}</label>
                 </div>
-                <Button>Change</Button>
+                <Button>{words.apply}</Button>
             </div>
         </form>
     )

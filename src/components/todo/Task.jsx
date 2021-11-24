@@ -15,7 +15,7 @@ export default function Task({item, index, removeTask, colorTask}) {
                         style={{ backgroundColor: snapshot.isDragging ? '#263b4a' : colorTask, ...provided.draggableProps.style }}
                     >
                         {item.content}
-                        <Button onClick={() => { removeTask(index) }} style={{minWidth: 'fit-content', padding: '0 10px'}}>
+                        <Button onClick={() => { removeTask(index) }} style={{minWidth: 'fit-content', padding: '0 10px', border: '1px solid lightgray'}} btn={false} color={['btn-flat']}>
                             <i className='material-icons'>close</i>
                         </Button>
                     </div>

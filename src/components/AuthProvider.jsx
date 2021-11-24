@@ -16,21 +16,21 @@ export default function AuthProvider({children}) {
     const [tasks, setTasks] = useState({
         toDo: {
             name: { en: 'To do', ru: 'Задачи' },
-            items: [{id: '1', content: 'Погулять с собакой'}, {id: '2', content: 'Сходить в кино'}],
+            items: [{id: '1', content: 'Погулять с собакой'}],
             colorColumn: '#cccccc',
             colorTask: '#374167' 
         },
         inProgress: {
             name: { en: 'In progress', ru: 'В процессе' },
-            items: [{id: '3', content: 'Сделать уборку'}],
+            items: [{id: '3', content: 'Do housework'}],
             colorColumn: '#cccccc',
-            colorTask: '#374167'
+            colorTask: '#d025b9'
         },
         Done: {
             name: { en: 'Done', ru: 'Выполнено' },
-            items: [],
+            items: [{id: '2', content: 'Сходить в кино'}],
             colorColumn: '#cccccc',
-            colorTask: '#374167'
+            colorTask: '#23c520'
         }
     })
     const [isLoaded, setIsLoaded] = useState(true)
