@@ -1,13 +1,13 @@
 export const formatTime = (time, lang='ru') => {
     const format = (lang === 'ru') ? 'ru-RU' : 'en-GB'
-    return new Date(time).toLocaleString(format, {
+    return new Date(time.replace(/-/g, "/")).toLocaleString(format, {
         hour:'numeric',
         minute:'numeric'
     })
 }
 
 export const timeDifference = (time, lastUpdated) => {
-    let result = Math.round((Date.parse(time) - lastUpdated)/36e5)
+    let result = Math.round((Date.parse(time.replace(/-/g, "/")) - lastUpdated)/36e5)
     result = (result > -1) ? `+${result}` : result
     return result
 }
