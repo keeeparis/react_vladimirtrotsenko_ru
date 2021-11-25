@@ -7,12 +7,16 @@ import { useLocalStorage } from '../hooks/localstorage.hook'
 import { useDictionary } from '../hooks/dictionary.hook'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Column from '../components/todo/Column'
+import infoIcon from '../media/images/info.png'
+// import { useMessage } from '../hooks/message.hook'
+// import Cookies from 'universal-cookie/es6'
 
 
 export default function Todo() {
     const {tasks, setTasks, lang} = useContext(AuthContext)
     const [modal, setModal] = useState(false)
     const words = useDictionary(lang)
+    // const message = useMessage()
     
     useLocalStorage('vtru_tasks', tasks)
     
@@ -62,6 +66,15 @@ export default function Todo() {
         }
     }
 
+    // const cookies = new Cookies()
+    // let week = 60*60*24*7
+    // useEffect(() => {
+    //     if (!cookies.get('Todo-Helper-Alert')) {
+    //         message('Вы можете перетаскивать задачи просто потянув за них')
+    //         cookies.set('Todo-Helper-Alert', 'yes', {maxAge: week, path: '/'})
+    //     }
+    // })
+
     return (
         <div className='content'>
             <h2 className='title'>Todo App</h2>
@@ -82,6 +95,10 @@ export default function Todo() {
                         <Column key={columnId} column={column} columnId={columnId} />
                     )}
                 </DragDropContext>
+            </div>
+            <div className='helper'>
+                <img src={infoIcon} alt="Info" />
+                <div>{words.helperTodo}</div>
             </div>
         </div>
     )

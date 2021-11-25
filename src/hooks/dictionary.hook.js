@@ -8,6 +8,7 @@ export const useDictionary = (lang) => {
 
 const ruWordsDatabase = {
     apply: 'Применить',
+    default: 'По умолчанию',
     colorColumn: 'Цвет списка',
     colorTask: 'Цвет задачи',
     create: 'Создать',
@@ -15,7 +16,7 @@ const ruWordsDatabase = {
     enterTask: 'Что Вам нужно сделать?',
     errorNoSelectCity: 'Вы не ввели город...',
     errorAlreadyInList: 'Город уже в списке',
-    enterCity: 'Введите город...',
+    enterCity: 'Начните вводить город...',
     search: 'Поиск',
     localTime: 'Местное время: ',
     hour: 'ч.',
@@ -23,6 +24,8 @@ const ruWordsDatabase = {
     kph: 'км/ч',
     forecast: 'Прогноз погоды',
     emptyInput: 'Вы не заполнили поле ввода',
+    helperTodo: 'Задачи можно перетаскивать между колонками и внутри каждой колонки',
+    helperWeather: 'Карточки с погодой можно перетаскивать между собой',
     welcome: 'Добро пожаловать',
     calculate: 'Высчитать',
     year1: 'год',
@@ -65,6 +68,7 @@ const ruWordsDatabase = {
 
 const enWordsDatabase = {
     apply: 'Apply',
+    default: 'Default',
     colorColumn: 'List color',
     colorTask: 'Task color',
     create: 'Create',
@@ -72,7 +76,7 @@ const enWordsDatabase = {
     enterTask: 'What do you have to do?',
     errorNoSelectCity: 'You haven\'t selected the city...',
     errorAlreadyInList: 'City is already in list',
-    enterCity: 'Search city...',
+    enterCity: 'Start typing a city...',
     search: 'Search',
     localTime: 'Local time: ',
     hour: 'h',
@@ -80,6 +84,8 @@ const enWordsDatabase = {
     kph: 'kph',
     forecast: 'Forecast',
     emptyInput: 'You haven\'t fill input',
+    helperTodo: 'Tasks can be drag/drop within its column and each column as well',
+    helperWeather: 'Weather cards can be drag/drop for your order preference',
     welcome: 'Welcome',
     calculate: 'Calculate',
     year1: 'year',

@@ -5,7 +5,7 @@ import Footer from './UI/footer/Footer'
 
 export default function Wrapper() {
     return (
-        <div style={{display: 'flex', flexDirection: 'column', minHeight: '100vh', color: 'white', backgroundColor: '#0b114c'}}>
+        <div className='layout'>
             <Navbar />
             <Outlet />
             <Footer />

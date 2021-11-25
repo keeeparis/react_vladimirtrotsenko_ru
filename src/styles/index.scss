@@ -5,6 +5,14 @@ body {
     font-family:'Open Sans';
 }
 
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: white;
+    background-color: $bc3;
+}
+
 .content {
     padding: 1rem 0;
     display: flex;
@@ -32,13 +40,13 @@ h2.title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 50px 0;
-    img { width: 85vw; height: 80%; max-width: 400px; margin-bottom: 50px; box-shadow: 0 0 0 12px darkgoldenrod;}
+    padding: 50px 0 50px;
+    img { width: 85vw; height: 80%; max-width: 400px; margin-bottom: 74px; box-shadow: -12px 12px 0 0px #E78D1E}
     .text { 
         font-size: 1.1em; 
         padding: 27px; 
-        background-color: darkmagenta; 
-        box-shadow: 12px -12px lawngreen;
+        background-color: $bc1; 
+        box-shadow: 12px -12px $bc2;
         max-width: 85vw;
     }
 }
@@ -46,7 +54,7 @@ h2.title {
 @media (min-width: 576px) {
     .main {
         padding: 75px 0 125px;
-        .text { padding: 35px; font-size: 1.3em;}
+        .text { padding: 33px 40px; font-size: 1.3em;}
     }
 }
 
@@ -55,7 +63,7 @@ h2.title {
         display: flex;
         flex-direction: row;
         align-items: stretch;
-        .text { width: 510px; min-height: 312px;} // +12px bcof box-shadow of img
+        .text { width: 510px; max-height: 300px;}
         img {margin-right: 50px; margin-bottom: 0; width: 400px; height: 300px;}
     }
 }
@@ -70,8 +78,7 @@ h2.title {
         left: 0;
         height: 1px;
         width: 100%;
-        position: absolute;
-        // transform: scaleX(100); 
+        position: absolute; 
         transform-origin: left;
         transition: opacity .7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform .8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
@@ -100,20 +107,20 @@ h2.title {
 }
 
 .bio-section {
-    background-color: brown;
-    min-height: 300px;
+    background-color: $bc1;
+    min-height: 315px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 50px 10px;
-    box-shadow: 0px 0px 0px 15px chocolate;
+    box-shadow: 0px -15px 0px 0px $bc2;
     img {width: 50px; height: 50px; margin-bottom: 20px;}
     &:nth-of-type(even) {
         background-color: inherit;
-        min-height: 330px; // +30px bc of box shadow 15px+15px
-        box-shadow: none;
-        color: darkorange;
+        min-height: 300px;
+        box-shadow: 0px 0px 0px 15px $bc2;
+        color: $bc2;
         img {filter: invert(1);}
     }
     
@@ -209,11 +216,11 @@ h2.title {
     margin-right: 8px;
     margin-left: 8px;
     width: 270px;
-    box-shadow: 5px 5px #bf360c;
+    box-shadow: 5px 5px $bc1;
     border-radius: 0;
     font-size: 0.85em;
     transition: background-color 0.2s ease;
-    min-height: 400px;
+    min-height: 424px; // in mobile font shrinks and height decreases
     display: flex;
     flex-direction: column;
     color: black;
@@ -335,9 +342,9 @@ h2.title {
     .list {
         margin: 8px;
     }
-    &:nth-of-type(1) .list {box-shadow: -5px 5px 0 0 darkred;}
-    &:nth-of-type(2) .list {box-shadow: 0 5px 0 0 darkred;}
-    &:nth-of-type(3) .list {box-shadow: 5px 5px 0 0 darkred;}
+    &:nth-of-type(1) .list {box-shadow: -5px 5px 0 0 $bc1;}
+    &:nth-of-type(2) .list {box-shadow: 0 5px 0 0 $bc1;}
+    &:nth-of-type(3) .list {box-shadow: 5px 5px 0 0 $bc1;}
 
     .name {
         display: flex; 
@@ -362,13 +369,13 @@ h2.title {
         overflow: hidden;
         transition: max-height 0.5s ease-out, opacity 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
         &.active {
-            max-height: 50px; // height of the form element
+            max-height: 70px; // height of the form element
             opacity: 1;
             transition: max-height 0.5s ease-out, opacity 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
         }
-        .wrapper { display: flex; gap: 15px;}
+        .wrapper { display: flex; gap: 15px; align-items: center;}
         .input-wrapper { display: flex; flex-direction: column; align-items: center }
-        button { font-size: 0.8em; padding: 0 10px; height: 27px; line-height: 27px }
+        button { font-size: 0.8em; padding: 0 8px; height: 27px; line-height: 27px }
     }
 }
 
@@ -383,8 +390,22 @@ h2.title {
     align-items: center;
 }
 
+.helper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+    text-align: center;
+    max-width: 85vw;
+    img {width: 20px; height: 20px; filter: invert(1);}
+}
+
 @media (min-width: 1024px) {
     .todo-columns {
+        flex-direction: row;
+    }
+    .helper {
         flex-direction: row;
     }
 }
@@ -416,10 +437,10 @@ h2.title {
 input[type=datetime-local].showtime-input {
     width: 85%;
     font-family: 'Poiret One';
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 20px;
-    // color: white;
-    filter: invert(1);
+    color: white;
+    // filter: invert(1);
 }
 
 @media (min-width: 576px) {

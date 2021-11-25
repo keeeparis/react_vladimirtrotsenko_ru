@@ -8,6 +8,7 @@ import { useLocalStorage } from '../hooks/localstorage.hook'
 import { useDictionary } from '../hooks/dictionary.hook'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { useFetching } from '../hooks/fetching.hook'
+import infoIcon from '../media/images/info.png'
 
 export default function Weather() {
     const {cards, setCards, lang} = useContext(AuthContext)
@@ -99,6 +100,10 @@ export default function Weather() {
                         <List key={columnId} column={column} columnId={columnId} />
                     )}
                 </DragDropContext>
+            </div>
+            <div className='helper'>
+                <img src={infoIcon} alt="Info" />
+                <div>{words.helperWeather}</div>
             </div>
         </div>
     )

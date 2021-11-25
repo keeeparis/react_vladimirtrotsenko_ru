@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+// fonts import
 @font-face {
     font-family: 'Open Sans';
     font-weight: 400;
@@ -46,10 +47,16 @@
     src: url('../media/fonts/Poiret_One/PoiretOne-Regular.ttf');
 }
 
+// custom styles
 a {
     text-decoration: none;
     color: white;
 }
+
+$bc1: #A63B35;
+$bc2: #E78D1E;
+$bc3: #18254F;
+
 
 // overwrite part
 .collapsible-body { padding: 1rem; border-bottom: 0; .row {margin-bottom: 0.5em;} }

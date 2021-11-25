@@ -14,6 +14,10 @@ export default function Column({columnId, column}) {
         setTasks(newList)
     }
 
+    const enableDefaultColors = () => {
+        setTasks({...tasks, [columnId]: {...column, colorColumn: column.defaultColorColumn, colorTask: column.defaultColorTask}})
+    }
+
     return (
         <div key={columnId} className='todo-column'>
             <div className='name'>
@@ -27,6 +31,7 @@ export default function Column({columnId, column}) {
             </div>
             <FormColor 
                 column={column}
+                enableDefaultColors={enableDefaultColors}
                 onSubmit={(e) => {
                     e.preventDefault()
                     setTasks({...tasks, [columnId]: {...column, [e.target[0].name]: e.target[0].value, [e.target[1].name]: e.target[1].value}})

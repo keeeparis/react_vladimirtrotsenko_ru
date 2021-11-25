@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import personalIcon from '../media/images/personal-information.png'
 import educationIcon from '../media/images/education.png'
 import skillIcon from '../media/images/skill.png'
+import linkIcon from '../media/images/link.png'
 
 export default function Index() {
     const {lang} = useContext(AuthContext)
@@ -48,8 +49,8 @@ export default function Index() {
                     <div className="info">
                         <div className="box1"><span>2018 - 2021:</span></div>
                         <div className="box2"><span>2014 - 2018:</span></div>
-                        <p>{words.masterEdu}</p>
-                        <p>{words.bachelorEdu}</p>
+                        <p style={{color: 'white'}}>{words.masterEdu}</p>
+                        <p style={{color: 'white'}}>{words.bachelorEdu}</p>
                     </div>
                 </div>
                 <div className='bio-section'>
@@ -66,6 +67,28 @@ export default function Index() {
                             <div className="box-">-</div><p>A2</p>
                         </div>
                         <p>{words.characterA}</p>
+                    </div>
+                </div>
+                <div className='bio-section'>
+                    <img src={linkIcon} alt='Links' />
+                    <div className='info'>
+                        <div className='box1'><span>Github:</span></div>
+                        <div className='box2'><span>Codewars:</span></div>
+                        <p><a 
+                            className='link' 
+                            href="https://github.com/keeeparis"
+                            target='_blank' 
+                            rel='noreferrer'
+                        >
+                            @Keeeparis
+                        </a></p>
+                        <p><a 
+                            className='link' 
+                            href="https://www.codewars.com/users/keeeparis"
+                            target='_blank' 
+                            rel='noreferrer'
+                        >   @Keeeparis
+                        </a></p>
                     </div>
                 </div>
             </div>

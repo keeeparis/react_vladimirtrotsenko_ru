@@ -23,12 +23,12 @@ export default function Form({submitForm, setCity, label, setLabel, isLoading}) 
     const customeStyles = {
         option: (provided, state) => ({
             ...provided,
-            boxShadow: 'inset 2px 0px indianred'
+            boxShadow: 'inset 2px 0px #A63B35'
         }),
         control: (provided, state) => ({
             ...provided,
-            borderColor: '#bf360c !important',
-            boxShadow: '5px 5px #bf360c',
+            borderColor: '#A63B35 !important',
+            boxShadow: '5px 5px #A63B35',
             borderRadius: '0'
         })
     }

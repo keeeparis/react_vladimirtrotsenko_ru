@@ -5,7 +5,7 @@ import Todo from '../pages/Todo'
 import Index from '../pages/Index'
 import TimeTo from '../pages/TimeTo'
 import { AuthContext } from '../context'
-import CardLoader from './UI/loader/Loader'
+import CardLoader from './UI/loader/CardLoader'
 import Layout from './Layout'
 
 export default function AppRouter() {

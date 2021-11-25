@@ -9,14 +9,12 @@ export default function CardHeader({removeCard, refreshData, provided, index}) {
             <Button
                 onClick={() => {removeCard(index)}}
                 btn={false}
-                color={['btn-flat', 'waves-red']}
             >
                 <img src={closeIcon} alt="close" className='close-icon'/>
             </Button>
             <Button
                 onClick={refreshData}
                 btn={false}
-                color={['btn-flat', 'waves-green']}
             >
                 <img src={refreshIcon} alt="refresh" className='close-icon' />
             </Button>

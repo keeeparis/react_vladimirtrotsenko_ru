@@ -3,7 +3,7 @@ import { AuthContext } from '../../context'
 import { useDictionary } from '../../hooks/dictionary.hook'
 import Button from '../UI/button/Button'
 
-export default function FormColor({column, ...props}) {
+export default function FormColor({column, enableDefaultColors, ...props}) {
     const {lang} = useContext(AuthContext)
     const [columnColor, setColumnColor] = useState(column.colorColumn)
     const [taskColor, setTaskColor] = useState(column.colorTask)
@@ -32,7 +32,10 @@ export default function FormColor({column, ...props}) {
                     />
                     <label htmlFor="task">{words.colorTask}</label>
                 </div>
-                <Button>{words.apply}</Button>
+                <div style={{display:'flex', flexDirection: 'column', gap: 5}}>
+                    <Button type='submit'>{words.apply}</Button>
+                    <Button type='button' onClick={enableDefaultColors}>{words.default}</Button>
+                </div>
             </div>
         </form>
     )
