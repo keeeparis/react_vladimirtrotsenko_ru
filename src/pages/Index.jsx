@@ -1,8 +1,10 @@
 import React, { useContext } from 'react'
-import {useDictionary} from '../hooks/dictionary.hook'
-import mainImage from '../media/images/main.jpg'
-import {AuthContext} from '../context/index'
 import { Link } from 'react-router-dom'
+
+import { AuthContext } from '../context/index'
+import { useDictionary } from '../hooks/dictionary.hook'
+
+import mainImage from '../media/images/main.jpg'
 import personalIcon from '../media/images/personal-information.png'
 import educationIcon from '../media/images/education.png'
 import skillIcon from '../media/images/skill.png'

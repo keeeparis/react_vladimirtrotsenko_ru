@@ -42,15 +42,6 @@ export default function AuthProvider({children}) {
     const [isLoaded, setIsLoaded] = useState(true)
     const [lang, setLang] = useState(navigator.language.substr(0, 2) || navigator.userLanguage.substr(0, 2) || '')
 
-    //TODO: куки тест
-    // const cookies = new Cookies()
-    // if (!cookies.get('myCat')) {
-    //     cookies.set('myCat', 'Pacman', {maxAge: 36e5, path: '/'})
-    // }
-
-    //major refresh
-    // useEffect(() => !localStorage.getItem('vtru_r') ? localStorage.clear() || localStorage.setItem('vtru_r', true) : null, [])
-
     useEffect(() => {
         if (localStorage.getItem('vtru_cards')) {
             setCards(JSON.parse(localStorage.getItem('vtru_cards')))

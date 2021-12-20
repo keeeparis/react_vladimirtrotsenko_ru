@@ -1,8 +1,10 @@
-import { BrowserRouter } from "react-router-dom";
-import AppRouter from "./components/AppRouter";
+import { BrowserRouter } from "react-router-dom"
+
 import './styles/index.scss'
 import 'materialize-css'
-import AuthProvider from "./components/AuthProvider";
+
+import AppRouter from "./components/AppRouter"
+import AuthProvider from "./components/AuthProvider"
 
 function App() {
     return (

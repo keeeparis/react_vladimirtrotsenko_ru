@@ -1,13 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { DragDropContext } from 'react-beautiful-dnd'
+
+import { AuthContext } from '../context'
+
 import ApiRequest from '../API/ApiRequest'
+
 import Form from '../components/weather/Form'
 import List from '../components/weather/List'
+
 import { useMessage } from '../hooks/message.hook'
-import { AuthContext } from '../context'
 import { useLocalStorage } from '../hooks/localstorage.hook'
 import { useDictionary } from '../hooks/dictionary.hook'
-import { DragDropContext } from 'react-beautiful-dnd'
 import { useFetching } from '../hooks/fetching.hook'
+
 import infoIcon from '../media/images/info.png'
 
 export default function Weather() {

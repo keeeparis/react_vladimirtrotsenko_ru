@@ -4,7 +4,7 @@ export const useFetching = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isError, setIsError] = useState(null)
 
-    const request = useCallback( async(url) => {
+    const request = useCallback(async (url) => {
         try {
             setIsLoading(true)
             const res = await url()
@@ -16,7 +16,13 @@ export const useFetching = () => {
         }
     }, [])
 
-    const clearError = () => {setIsError(null)}
+    const clearError = () => { setIsError(null) }
 
-    return {request, isLoading, isError, clearError, setIsError}
+    return { 
+        request, 
+        isLoading, 
+        isError, 
+        setIsError, 
+        clearError
+    }
 }

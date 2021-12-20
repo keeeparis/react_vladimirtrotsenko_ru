@@ -1,7 +1,9 @@
 import React, { useContext } from 'react'
+import AsyncSelect from 'react-select/async'
+
 import Loader from '../UI/loader/Loader'
 import Button from '../UI/button/Button'
-import AsyncSelect from 'react-select/async'
+
 import ApiRequest from '../../API/ApiRequest'    
 import { suggestionsDefaultOptionsEN, suggestionsDefaultOptionsRU } from '../../utils'
 import { AuthContext } from '../../context/index'

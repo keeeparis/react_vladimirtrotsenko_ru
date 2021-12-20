@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { formatTime } from '../../utils'
 
 export default function ForecastItem({forecast, localTime, currentTemp}) {
@@ -19,6 +20,7 @@ export default function ForecastItem({forecast, localTime, currentTemp}) {
                     <div className={divClasses} key={el.time}>
                         <img src={el.condition.icon} alt='weather icon' />
                         <p>{Math.round(temp)}&deg;</p>
+                        {/* FIXME: */}
                         <p>{el.time.split(' ')[1].split(':')[0].split('')[0] !== '0' // get out first 0
                             ? el.time.split(' ')[1].split(':')[0] 
                             : el.time.split(' ')[1].split(':')[0].split('')[1]
