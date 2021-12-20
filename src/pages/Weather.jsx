@@ -17,10 +17,12 @@ import infoIcon from '../media/images/info.png'
 
 export default function Weather() {
     const {cards, setCards, lang} = useContext(AuthContext)
+
     const [city, setCity] = useState('')
     const [labelForSelect, setLabelForSelect] = useState('')
-    const message = useMessage()
+
     const {request, isLoading, isError, setIsError} = useFetching()
+    const message = useMessage()
     const words = useDictionary(lang)
 
     const submitForm = async (e) => {
@@ -38,8 +40,8 @@ export default function Weather() {
             const cityColumn = {...cards.city}
             const cityItems = cityColumn.items
             cityItems.splice(cityItems?.length, 0, newCity)
+            
             setCards({...cards, city: cityColumn})
-
         } catch (e) {
             setIsError(e.message)
         } finally {

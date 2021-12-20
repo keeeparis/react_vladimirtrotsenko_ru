@@ -1,17 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import AsyncSelect from 'react-select/async'
+import { useDispatch } from 'react-redux'
 
 import Loader from '../UI/loader/Loader'
 import Button from '../UI/button/Button'
 
-import ApiRequest from '../../API/ApiRequest'    
+import ApiRequest from '../../API/ApiRequest'  
+  
 import { suggestionsDefaultOptionsEN, suggestionsDefaultOptionsRU } from '../../utils'
 import { AuthContext } from '../../context/index'
 import { useDictionary } from '../../hooks/dictionary.hook'
+import { addNewCard } from '../../features/weather-cards/cardsSlice'
 
 export default function Form({submitForm, setCity, label, setLabel, isLoading}) {
     const {lang} = useContext(AuthContext)
     const words = useDictionary(lang)
+
+    const dispatch = useDispatch()
 
     const loadSuggestions = async (inputValue, callback) => {
         if (!inputValue) return
@@ -35,15 +40,25 @@ export default function Form({submitForm, setCity, label, setLabel, isLoading}) 
         })
     }
 
+    const [cityname, setCityname] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        dispatch(addNewCard({ city: cityname }))
+        setLabel('')
+        setCityname('')
+    }
+
     return (
         <form
-            onSubmit={submitForm}
+            // onSubmit={submitForm}
+            onSubmit={handleSubmit}
             className='form-weather'
         >
             <AsyncSelect 
                 value={label}
                 defaultOptions={lang==='ru' ? suggestionsDefaultOptionsRU : suggestionsDefaultOptionsEN}
-                onChange={e => {setLabel(e); setCity(e.value)}}
+                onChange={e => {setLabel(e); setCity(e.value); setCityname(e.value)}}
                 loadOptions={loadSuggestions}
                 className='select-suggestions'
                 styles={customeStyles}
@@ -52,7 +67,8 @@ export default function Form({submitForm, setCity, label, setLabel, isLoading}) 
             <div className='loader-button'>
                 {isLoading 
                 ?   <Button><Loader /></Button> 
-                :   <Button>{words.search}</Button>}
+                :   <Button>{words.search}</Button>
+                }
             </div>
         </form>
     )
