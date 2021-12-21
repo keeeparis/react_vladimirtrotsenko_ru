@@ -13,7 +13,7 @@ import { useDictionary } from '../../hooks/dictionary.hook'
 import { addNewCard } from '../../features/weather-cards/cardsSlice'
 
 export default function Form({submitForm, setCity, label, setLabel, isLoading}) {
-    const {lang} = useContext(AuthContext)
+    const {lang} = useContext(AuthContext) 
     const words = useDictionary(lang)
 
     const dispatch = useDispatch()
