@@ -1,34 +1,34 @@
 import React, { useContext, useEffect, useMemo, useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { Draggable } from 'react-beautiful-dnd'
+
 import ApiRequest from '../../API/ApiRequest'
 import { AuthContext } from '../../context'
+
 import { useDictionary } from '../../hooks/dictionary.hook'
 import { useFetching } from '../../hooks/fetching.hook'
-import { Draggable } from 'react-beautiful-dnd'
+import { useMessage } from '../../hooks/message.hook'
+
 import CardHeader from './CardHeader'
 import CardDetails from './CardDetails'
 import CardContent from './CardContent'
 import CardLoader from '../UI/loader/CardLoader'
-import { useMessage } from '../../hooks/message.hook'
+import { refreshCard } from '../../features/weather-cards/cardsSlice'
 
 export default function Card({item, index, removeCard}) {
-    const {cards, setCards, lang} = useContext(AuthContext)
-    const {request, isLoading, isError} = useFetching()
-    const message = useMessage()
+    const {lang} = useContext(AuthContext)
     const words = useDictionary(lang)
+    const {isLoading, isError} = useFetching()
+    const message = useMessage()
+
+    const dispatch = useDispatch()
 
     const isDayOrNightClasses = useMemo(() => {
-        return item.current.is_day ? 'light-blue lighten-3' : 'blue darken-4 white-text'
+        return item.forecast.current.is_day ? 'light-blue lighten-3' : 'blue darken-4 white-text'
     }, [item])
 
-    // By default, using current API, it restricts to update more than one time in 180sec.
-    const refreshData = async () => {
-        try {
-            const response = await request(() => ApiRequest.getData({lat: item.location.lat, lng: item.location.lon}))
-            const newColumn = {...cards.city}
-            const newList = newColumn.items
-            const finishList = newList.map(card => card.city === item.city ? {...card, location: response.location, current: response.current, lastUpdated: Date.now(), forecast: response.forecast} : card)
-            setCards({...cards, city: {...newColumn, items: finishList}})
-        } catch (e) {}
+    const refreshData = () => {
+        dispatch(refreshCard(item))
     }
 
     const refEl = useRef(null)

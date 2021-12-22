@@ -1,17 +1,17 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Droppable } from 'react-beautiful-dnd'
-import { AuthContext } from '../../context'
+
 import useWindowDimensions from '../../hooks/windowDimensions.hook'
+
 import Card from './Card'
 
-export default function List({columnId, column}) {
-    const {cards, setCards} = useContext(AuthContext)
+export default function List({ columnId, column }) {
     const {width} = useWindowDimensions()
 
     const removeCard = (index) => {
-        const newList = {...cards}
-        newList[columnId]['items'].splice(index, 1)
-        setCards(newList)
+        // const newList = {...cards}
+        // newList[columnId]['items'].splice(index, 1)
+        // setCards(newList)
     }
 
     return (
@@ -30,7 +30,7 @@ export default function List({columnId, column}) {
                             flexDirection: width > 1024 ? 'row' : 'column'
                         }} 
                     >
-                        {column.items.map((item, index) => 
+                        {Object.values(column.entities).map((item, index) => 
                             <Card item={item} index={index} key={index} removeCard={removeCard}/>
                         )}
                         {provided.placeholder}

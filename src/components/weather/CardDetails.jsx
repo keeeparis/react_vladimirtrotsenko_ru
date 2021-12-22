@@ -8,15 +8,15 @@ export default function CardDetails({className, item, words}) {
         <div className={className}>
             <div className='info'>
                 <img src={humidIcon} alt="humidity" className='small-icon'/>
-                <p>{item.current.humidity}%</p>
+                <p>{item.forecast.current.humidity}%</p>
             </div>
             <div className='info'>
                 <img src={windIcon} alt="wind" className='small-icon'/>
-                <p>{Math.round(item.current.wind_kph)} {words.kph}</p>
+                <p>{Math.round(item.forecast.current.wind_kph)} {words.kph}</p>
             </div>
             <div className='info'>
                 <img src={uvIcon} alt="ultraviolet" className='small-icon'/>
-                <p>{item.current.uv}</p>
+                <p>{item.forecast.current.uv}</p>
             </div>
         </div>
     )
