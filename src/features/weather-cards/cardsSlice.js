@@ -30,7 +30,11 @@ export const refreshCard = createAsyncThunk(
         const coords = initialCard.coords
         const forecast = await ApiRequest.getData(coords)
 
-        return { id: initialCard.id, forecast: forecast, lastUpdated: Date.now() }
+        return { 
+            id: initialCard.id, 
+            forecast: forecast, 
+            lastUpdated: Date.now() 
+        }
     }
 )
 
@@ -45,7 +49,16 @@ const cardsSlice = createSlice({
     },
     reducers: {
         handleDragEnd(state, action) {
-            console.log(action.payload)
+            const updatedEntities = {}
+
+            action.payload.forEach(entity => {
+                updatedEntities[entity.id] = entity
+            })
+
+            cardsAdapter.setAll(state.cards.city, updatedEntities)
+        },
+        removeCard(state, action) {
+            cardsAdapter.removeOne(state.cards.city, action.payload)
         }
     },
     extraReducers(builder) {
@@ -63,6 +76,7 @@ const cardsSlice = createSlice({
                 state.error = action.error.message
             })
             .addCase(refreshCard.fulfilled, (state, action) => {
+                state.status = 'succeeded'
                 cardsAdapter.updateOne(
                     state.cards.city, 
                     { 
@@ -79,7 +93,7 @@ const cardsSlice = createSlice({
 
 export default cardsSlice.reducer
 
-export const { handleDragEnd } = cardsSlice.actions
+export const { handleDragEnd, removeCard } = cardsSlice.actions
 
 export const {
     selectAll: selectAllCards,
@@ -87,5 +101,6 @@ export const {
     selectIds: selectCardIds
 } = cardsAdapter.getSelectors(state => state.weather.cards.city)
 
+export const getCards = state => state.weather.cards
 export const getStatus = state => state.weather.status
 export const getError = state => state.weather.error

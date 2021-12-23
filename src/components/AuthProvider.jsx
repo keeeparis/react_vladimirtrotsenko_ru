@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { AuthContext } from '../context'
-import ApiRequest from '../API/ApiRequest'
 // import Cookies from 'universal-cookie'
 
 export default function AuthProvider({children}) {

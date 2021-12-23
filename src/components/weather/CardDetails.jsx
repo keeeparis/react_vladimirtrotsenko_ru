@@ -1,11 +1,21 @@
 import React from 'react'
+
+import clx from 'classnames'
+
 import windIcon from '../../media/images/wind-solid.svg'
 import humidIcon from '../../media/images/drop-line.svg'
 import uvIcon from '../../media/images/ultraviolet.png'
 
-export default function CardDetails({className, item, words}) {
+export default function CardDetails({ item, words }) {
+    const detailsClasses = clx(
+        'card-details', 
+        'card-action', 
+        { 'light-blue lighten-3': item.forecast.current.is_day },
+        { 'blue darken-4 white-text': !item.forecast.current.is_day },
+    )
+
     return (
-        <div className={className}>
+        <div className={detailsClasses}>
             <div className='info'>
                 <img src={humidIcon} alt="humidity" className='small-icon'/>
                 <p>{item.forecast.current.humidity}%</p>

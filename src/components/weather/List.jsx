@@ -1,40 +1,31 @@
 import React from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 
+import Card from './Card'
 import useWindowDimensions from '../../hooks/windowDimensions.hook'
 
-import Card from './Card'
+import { CardWrapper } from './styles'
 
 export default function List({ columnId, column }) {
-    const {width} = useWindowDimensions()
+    const { width } = useWindowDimensions()
 
-    const removeCard = (index) => {
-        // const newList = {...cards}
-        // newList[columnId]['items'].splice(index, 1)
-        // setCards(newList)
-    }
+    const handleDroppableDirection = (width) => width > 1024 ? 'horizontal' : 'vertical'
 
     return (
-        <Droppable droppableId={columnId} key={columnId} direction={width > 1024 ? 'horizontal' : 'vertical'}>
+        <Droppable droppableId={columnId} key={columnId} direction={handleDroppableDirection(width)}>
             {(provided, snapshot) => {
                 return (
-                    <div
+                    <CardWrapper
                         {...provided.droppableProps} 
                         ref={provided.innerRef}
-                        style={{ background: snapshot.isDraggingOver ? 'lightblue' : 'inherit', 
-                            padding: 8, 
-                            display: 'flex', 
-                            flexWrap: 'wrap', 
-                            justifyContent: 'space-between', 
-                            transition: 'background-color 0.5s ease-in-out',
-                            flexDirection: width > 1024 ? 'row' : 'column'
-                        }} 
+                        width={width}
+                        snapshot={snapshot}
                     >
                         {Object.values(column.entities).map((item, index) => 
-                            <Card item={item} index={index} key={index} removeCard={removeCard}/>
+                            <Card item={item} index={index} key={index} />
                         )}
                         {provided.placeholder}
-                    </div>
+                    </CardWrapper>
                 )
             }}
         </Droppable>
