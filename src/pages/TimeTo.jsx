@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
+
 import { AuthContext } from '../context'
-import { useLocalStorage } from '../hooks/localstorage.hook'
-import { useMessage } from '../hooks/message.hook'
-import { useDictionary } from '../hooks/dictionary.hook'
-import { calculateTime } from '../utils'
+
 import Button from '../components/UI/button/Button'
 import Showtime from '../components/timeto/Showtime'
+
+import { useLocalStorage } from '../hooks/localstorage.hook'
+import { useDictionary } from '../hooks/dictionary.hook'
+import { useMessage } from '../hooks/message.hook'
+
+import { calculateTime } from '../utils'
 
 export default function TimeTo() {
     const {timeto, setTimeto, lang} = useContext(AuthContext)

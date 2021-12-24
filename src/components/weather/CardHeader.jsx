@@ -14,7 +14,7 @@ export default function CardHeader({ provided, item, setLoading }) {
         dispatch(removeCard(item.id))
     }
 
-    const refreshData = async () => {
+    const handleRefreshCard = async () => {
         try {
             setLoading(true)
             await dispatch(refreshCard(item)).unwrap()
@@ -30,7 +30,7 @@ export default function CardHeader({ provided, item, setLoading }) {
             <Button onClick={handleRemoveCard} btn={false}>
                 <img src={closeIcon} alt="close" className='close-icon'/>
             </Button>
-            <Button onClick={refreshData} btn={false}>
+            <Button onClick={handleRefreshCard} btn={false}>
                 <img src={refreshIcon} alt="refresh" className='close-icon' />
             </Button>
             <div {...provided.dragHandleProps}>

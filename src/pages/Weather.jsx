@@ -14,7 +14,7 @@ export default function Weather() {
     const message = useMessage()
 
     const cards = useSelector(getCards)
-    const loading = useSelector(getStatus)
+    const status = useSelector(getStatus)
     const error = useSelector(getError)
 
     const dispatch = useDispatch()
@@ -63,7 +63,7 @@ export default function Weather() {
     return (
         <div className='content'>
             <h2 className='title'>Weather App</h2>
-            <Form state={loading}/>
+            <Form status={status}/>
             <div className='city-list'>
                 <DragDropContext
                     onDragEnd={(result) => onDragEnd(result, cards)}

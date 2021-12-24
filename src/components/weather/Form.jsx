@@ -23,7 +23,7 @@ const selectStyles = {
     })
 }
 
-export default function Form({ state }) {
+export default function Form({ status }) {
     const [cityname, setCityname] = useState('')
     const [label, setLabel] = useState('')
 
@@ -70,7 +70,7 @@ export default function Form({ state }) {
                 styles={selectStyles}
                 placeholder={words.enterCity}
             />
-            <FormButton state={state} words={words} />
+            <FormButton status={status} words={words} />
         </form>
     )
 }
