@@ -3,15 +3,10 @@ import { AuthContext } from '../context'
 // import Cookies from 'universal-cookie'
 
 export default function AuthProvider({children}) {
+    /* TODO: убрать timeto state */
     const [timeto, setTimeto] = useState({
-        event: '2022-01-01T00:00'
+        event: '2023-01-01T00:00'
     })
-    // const [cards, setCards] = useState({
-    //     city: {
-    //         name: 'Weather',
-    //         items: []
-    //     }
-    // })
     const [tasks, setTasks] = useState({
         toDo: {
             name: { en: 'To do', ru: 'Задачи' },
@@ -60,6 +55,7 @@ export default function AuthProvider({children}) {
         if (localStorage.getItem('vtru_lang')) {
             setLang(JSON.parse(localStorage.getItem('vtru_lang')))
         }
+        /* TODO: убрать */
         if (localStorage.getItem('vtru_timeto')) {
             setTimeto(JSON.parse(localStorage.getItem('vtru_timeto')))
         }
@@ -85,7 +81,7 @@ export default function AuthProvider({children}) {
     // }, [])
 
     return (
-        <AuthContext.Provider 
+        <AuthContext.Provider /* TODO: убрать переменные timeto and settimeto */
             value={{tasks, setTasks, isLoaded, lang, setLang, timeto, setTimeto}}
         >
             {children}

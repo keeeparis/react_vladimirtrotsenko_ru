@@ -3,83 +3,38 @@ import Form from '../components/todo/Form'
 import Modal from '../components/UI/modal/Modal'
 import Button from '../components/UI/button/Button'
 import { AuthContext } from '../context'
-import { useLocalStorage } from '../hooks/localstorage.hook'
+// import { useLocalStorage } from '../hooks/localstorage.hook'
 import { useDictionary } from '../hooks/dictionary.hook'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Column from '../components/todo/Column'
 import infoIcon from '../media/images/info.png'
-// import { useMessage } from '../hooks/message.hook'
-// import Cookies from 'universal-cookie/es6'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { addNewTask, getColumns, handleDragEnd } from '../features/todo-tasks/tasksSlice'
+import onDragEnd from '../utils/onDragEnd'
 
 export default function Todo() {
-    const {tasks, setTasks, lang} = useContext(AuthContext)
+    const {lang} = useContext(AuthContext)
     const [modal, setModal] = useState(false)
     const words = useDictionary(lang)
-    // const message = useMessage()
-    
-    useLocalStorage('vtru_tasks', tasks)
+
+    const dispatch = useDispatch()
+    const columns = useSelector(getColumns)
     
     const createTask = (newTask) => {
-        const toDoList = {...tasks.toDo}
-        const newList = toDoList.items
-        newList.splice(newList?.length, 0, newTask)
-        setTasks({...tasks, toDo: toDoList})
+        dispatch(addNewTask(newTask))
         setModal(false)
     }
-    
-    const onDragEnd = (result, columns, setColumns) => {
-        if (!result.destination) return
-        const { source, destination } = result
-    
-        if (source.droppableId !== destination.droppableId) {
-            const sourceColumn = columns[source.droppableId]
-            const destColumn = columns[destination.droppableId]
-            const sourceItems = [...sourceColumn.items]
-            const destItems = [...destColumn.items]
-    
-            const [removed] = sourceItems.splice(source.index, 1)
-            destItems.splice(destination.index, 0, removed)
-            setColumns({
-                ...columns,
-                [source.droppableId]: {
-                    ...sourceColumn,
-                    items: sourceItems
-                },
-                [destination.droppableId]: {
-                    ...destColumn, 
-                    items: destItems
-                }
-            })
-        } else {
-            const column = columns[source.droppableId]
-            const copiedItems = [...column.items]
-            const [removed] = copiedItems.splice(source.index, 1)
-            copiedItems.splice(destination.index, 0, removed)
-            setColumns({
-                ...columns,
-                [source.droppableId]: {
-                    ...column,
-                    items: copiedItems
-                }
-            })
-        }
-    }
 
-    // const cookies = new Cookies()
-    // let week = 60*60*24*7
-    // useEffect(() => {
-    //     if (!cookies.get('Todo-Helper-Alert')) {
-    //         message('Вы можете перетаскивать задачи просто потянув за них')
-    //         cookies.set('Todo-Helper-Alert', 'yes', {maxAge: week, path: '/'})
-    //     }
-    // })
+    const handleModalOn = () => {
+        setModal(true)
+    }
 
     return (
         <div className='content'>
             <h2 className='title'>Todo App</h2>
             <Button 
-                onClick={() => setModal(true)} 
+                onClick={handleModalOn} 
                 style={{fontWeight: '500'}} 
             >
                 {words.createTask}
@@ -89,9 +44,9 @@ export default function Todo() {
             </Modal>
             <div className='todo-columns'>
                 <DragDropContext
-                    onDragEnd={(result) => onDragEnd(result, tasks, setTasks)}    
+                    onDragEnd={(result) => onDragEnd(result, columns, dispatch, handleDragEnd)}    
                 >
-                    {Object.entries(tasks).map(([columnId, column], index) => 
+                    {Object.entries(columns).map(([columnId, column], index) => 
                         <Column key={columnId} column={column} columnId={columnId} />
                     )}
                 </DragDropContext>

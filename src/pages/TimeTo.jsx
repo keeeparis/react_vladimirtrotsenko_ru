@@ -12,7 +12,7 @@ import { useMessage } from '../hooks/message.hook'
 import { calculateTime } from '../utils'
 
 export default function TimeTo() {
-    const {timeto, setTimeto, lang} = useContext(AuthContext)
+    const {timeto, setTimeto, lang} = useContext(AuthContext) // убрать получение данных из контекста
     const [isFinish, setIsFinish] = useState(true)
     const message = useMessage()
     const words = useDictionary(lang)
@@ -56,7 +56,12 @@ export default function TimeTo() {
         return () => clearInterval(timerId)
     })
 
+    /* TODO: убрать хук */
     useLocalStorage('vtru_timeto', timeto)
+
+    /* TODO: функция handleInputChange */
+
+    /* TODO: delete inline-styles */
 
     return (
         <div className='content'>

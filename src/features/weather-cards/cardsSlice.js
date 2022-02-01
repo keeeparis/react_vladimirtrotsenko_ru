@@ -13,14 +13,12 @@ export const addNewCard = createAsyncThunk(
         const coords = await ApiRequest.getCoords(initialCard.city)
         const forecast = await ApiRequest.getData(coords)
 
-        const data = {
+        return {
             id: initialCard.city, 
             coords: coords, 
             forecast: forecast,
             lastUpdated: Date.now()
         }
-
-        return data
     }
 )
 
@@ -50,12 +48,13 @@ const cardsSlice = createSlice({
     reducers: {
         handleDragEnd(state, action) {
             const updatedEntities = {}
+            const {sourceColId, sourceItems} = action.payload
 
-            action.payload.forEach(entity => {
+            sourceItems.forEach(entity => {
                 updatedEntities[entity.id] = entity
             })
 
-            cardsAdapter.setAll(state.cards.city, updatedEntities)
+            cardsAdapter.setAll(state.cards[sourceColId], updatedEntities)
         },
         removeCard(state, action) {
             cardsAdapter.removeOne(state.cards.city, action.payload)

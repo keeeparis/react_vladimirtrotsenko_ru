@@ -5,8 +5,10 @@ import { AuthContext } from '../../context'
 import FormColor from './FormColor'
 
 export default function Column({columnId, column}) {
-    const {tasks, setTasks, lang} = useContext(AuthContext)
+    const {tasks, setTasks} = useContext(AuthContext)
     const [visibleColors, setVisibleColors] = useState(false)
+    // console.log(column);
+    // console.log(columnId);
 
     const removeTask = (index) => {
         const newList = {...tasks}
@@ -21,7 +23,7 @@ export default function Column({columnId, column}) {
     return (
         <div key={columnId} className='todo-column'>
             <div className='name'>
-                <h3>{column.name[lang]}</h3>
+                <h3>{columnId}</h3>
                 <button 
                     onClick={() => setVisibleColors(!visibleColors)} 
                     className={visibleColors?'btn-flat active': 'btn-flat'}
@@ -47,7 +49,7 @@ export default function Column({columnId, column}) {
                                 ref={provided.innerRef} 
                                 style={{ background: snapshot.isDraggingOver ? 'lightblue' : column.colorColumn, padding: 4, width: 300, minHeight: 300}}
                             >
-                                {column.items.map((item, index) => 
+                                {Object.values(column.entities).map((item, index) => 
                                     <Task item={item} index={index} key={index} removeTask={removeTask} colorTask={column.colorTask} />
                                 )}
                                 {provided.placeholder}
